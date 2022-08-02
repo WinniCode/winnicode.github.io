@@ -30,7 +30,7 @@
 						<nav>
 							<ul>
 								<li><a href="#intro">Intro</a></li>
-								<li><a href="#snippets">Snippets</a></li>
+								<li><a href="#blog">Work</a></li>
 								<li><a href="#about">About</a></li>
 								<li><a href="#contact">Contact</a></li>
 								<!--<li><a href="#elements">Elements</a></li>-->
@@ -53,12 +53,27 @@
 							</article>
 
 						<!-- Work -->
-							<article id="snippets">
-								<h2 class="major">Snippets</h2>
-								<span class="image main"><img src="images/pic02.jpg" alt="" /></span>
-								<p>Automation!</p>
+							<article id="blog">
+								<h2 class="major">Blog</h2>
+								<span class="image main"><img src="images/bash.png" alt="" /></span>
+								<p><code class="language-bash">#!/bin/bash <br>
+								mkdir ../COMBINED<br>
+								for folder in */; do<br>
+								   echo "File -> $folder";<br>
+								   trimmed=$(echo $folder | sed 's:/*$::');<br>
+								   cp -r $folder/hello.txt ../COMBINED/$trimmed.txt<br>
+								done</code></p>
+								<p></p>
+								<span class="image main"><img src="images/linux.png" alt="" /></span>
+								<p># Recursive 755 chmod rwxr-xr-x.<br>
+								   # 7: 4 + 2 + 1: Read, write, and execute (user owner).<br>
+								   # 5: 4 + 0 + 1: Read and execute permissions (group owner).<br>
+								   # 5: 4 + 0 + 1: Read and execute permissions (others).<br>
+								<code class="language-linux">chmod -R 755 /cool/beans<br>
+								</code></p>
 								<p></p>
 							</article>
+
 
 						<!-- About -->
 							<article id="about">
