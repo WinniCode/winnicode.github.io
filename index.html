@@ -88,6 +88,13 @@
 								<p><font color=#7ef2d1>Count current dir size recusively and output in human readable. 'cd' to dir then: </font><br>
 								<code class="language-linux">du -hs<br>
 								</code></p>
+								<p><font color=#7ef2d1>Count current dir size recusively and output each sub directory size in human readable, sorted by size. 'cd' to dir then: </font><br>
+								<code class="language-linux">du -sh ./* | awk '{print $1 " " $2}' | sort -hr<br>
+								</code></p>
+								
+
+
+								
 							</article>
 
 
