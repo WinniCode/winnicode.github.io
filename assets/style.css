@@ -1,0 +1,299 @@
+body {
+  margin: 0;
+  background-color: #FDC26F;
+  background-image: url('tile.png'); /* or a full URL if hosted online */
+  background-repeat: repeat;
+  background-size: auto;
+  background-position: top left;
+  background-attachment: scroll;
+  font-family: 'Emilys Candy';font-size: 18px;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Outer wrapper centers the whole block */
+.outer-wrapper {
+  width: 100%;
+  max-width: 1600px;
+  padding: 2rem;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Inner layout: text and TV side by side */
+.content-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 4rem;
+}
+
+/* Center text inside its panel */
+.text-panel {
+  color: #41857a;
+  max-width: 500px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+/* Headline & paragraph styling */
+.text-panel h1 {
+  font-size: 3.5rem;
+  margin-bottom: 1rem;
+}
+
+.text-panel p {
+  font-size: 1.0rem;
+  line-height: 1.6;
+}
+
+/* TV */
+.tv-wrapper {
+  position: relative;
+  width: 600px;
+  max-width: 95vw;
+  align-items: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+
+}
+
+
+.tv-base {
+  width: 100%;
+  display: block;
+  align-items: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+}
+
+/* Aligned to the screen of the TV */
+.tv-screen {
+  position: absolute;
+  top: 34.2%;
+  left: 21.7%;
+  width: 35%;
+  height: 29%;
+  overflow: hidden;
+  border-radius: 26%;
+  box-shadow: inset 0 0 12px #0ff8;
+  transform: perspective(600px) rotatey(-10deg);
+}
+
+.crt {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: flicker 1.3s infinite;
+  filter: contrast(1.2) brightness(1.05);
+
+  /* More dramatic CRT curvature */
+  border-radius: 8% / 6%;
+  overflow: hidden;
+    box-shadow:
+    inset 0 0 80px #00ffff22,
+    inset 0 0 100px rgba(0, 255, 255, 0.06),
+    inset 0 0 250px rgba(255, 255, 255, 0.08),
+    0 0 40px #00f3;
+
+
+  transform: perspective(1000px) scale(1.01)
+    rotateX(2deg) rotateY(-3deg);
+}
+
+/* CRT image or video */
+.crt img,
+.crt video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter:
+    contrast(1.6)
+    saturate(0.5)
+    brightness(0.9)
+    hue-rotate(-2deg)
+    blur(0.3px); /* simulate analog softness */
+  transform: scale(1.01);
+}
+
+/* Scanlines: denser and more visible */
+.scanlines {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.25) 0px,
+    rgba(0, 0, 0, 0.25) 0.33px,
+    transparent 0.33px,
+    transparent 1px
+  );
+  pointer-events: none;
+  z-index: 10;
+  mix-blend-mode: multiply;
+  opacity: 0.65;
+  animation: scan 0.18s linear infinite;
+}
+
+/* Add curvature warp and glow to .crt */
+.crt {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: flicker 1.4s infinite;
+  filter: contrast(1.25) brightness(1.05);
+  border-radius: 25px;
+  overflow: hidden;
+
+  /* Stronger curvature illusion */
+  box-shadow:
+    inset 0 0 80px #00ffff22,
+    inset 0 0 100px rgba(0, 255, 255, 0.06),
+    inset 0 0 250px rgba(255, 255, 255, 0.08),
+    0 0 40px #00f3;
+
+  transform: perspective(800px) scale(1.01) rotateX(2deg);
+  backdrop-filter: brightness(1.03);
+}
+
+.crt::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 6;
+
+  background: radial-gradient(
+    ellipse at center,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(0, 0, 0, 0.3) 70%,
+    rgba(0, 0, 0, 0.7) 100%
+  );
+
+  mix-blend-mode: overlay;
+  opacity: 0.6;
+}
+
+
+.crt::after {
+  content: "";
+  position: absolute;
+  top: -20%;
+  left: -20%;
+  width: 140%;
+  height: 140%;
+  pointer-events: none;
+  z-index: 7;
+
+  background: radial-gradient(
+    circle at 30% 30%,
+    rgba(255, 255, 255, 0.15) 0%,
+    transparent 60%
+  );
+
+  mix-blend-mode: screen;
+  opacity: 0.5;
+}
+
+
+/* Flicker effect */
+@keyframes flicker {
+  0%, 100% { opacity: 1; }
+  48% { opacity: 0.95; }
+  50% { opacity: 0.9; }
+  52% { opacity: 0.96; }
+  56% { opacity: 0.92; }
+  60% { opacity: 0.97; }
+}
+
+/* Scanlines scroll slightly */
+@keyframes scan {
+  0% { background-position: 0 0; }
+  100% { background-position: 0 3px; }
+}
+
+
+/* fontawesome */
+[class*="fontawesome-"]:before {
+  font-family: 'FontAwesome', sans-serif;
+}
+
+section.text {
+  position: absolute;
+  width: 100%;
+  min-width: 800px;
+  text-align: center;
+  top: 50%;
+  margin-top: -55px;
+}
+
+h1, h3, p{
+  transform: matrix(1, -0.00, 0, 1, 0, 0);
+  -ms-transform: matrix(1, -0.00, 0, 1, 0, 0);
+  -webkit-transform: matrix(1, 0.00, 0, 1, 0, 0);
+}
+
+h1 {
+  font-style: normal;
+  text-transform: uppercase;
+  font-size: 170px;
+  text-shadow: 2px 3px #edab56, 2px 3px #c6a39a;
+}
+
+h1 span {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+span.star {
+  font-size: 20px;
+}
+
+h3 {
+  font-family: "Emilys Candy", serif;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 20px;
+  letter-spacing: 0.1em;
+  margin-bottom: 10px;  
+  position: relative;
+}
+
+h3:before, h3:after {
+  content: " ";
+  position: absolute;
+  width: 100px;
+  height: 4px;
+  border-top: 2px solid #121212;
+  border-bottom: 2px solid #121212;
+}
+
+h3:before {
+  margin: 5px 0 0 -110px;
+}
+
+h3:after {
+  margin: 5px 0 0 10px;
+}
