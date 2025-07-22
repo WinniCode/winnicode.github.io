@@ -162,6 +162,10 @@ h3:after {
 @media (max-width: 768px) {
   html, body {
     height: 100vh;
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
   }
 
   body {
@@ -172,47 +176,63 @@ h3:after {
   }
 
   .outer-wrapper {
-    height: auto;
-    padding: 1rem;
+    width: 100%;
+    padding: 1rem 0.5rem;
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
   }
 
   .content-wrapper {
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    gap: 2rem;
+    gap: 1.5rem;
+    width: 100%;
   }
 
   .tv-wrapper {
-    transform: scale(0.5);
+    transform: scale(0.8);
     transform-origin: top center;
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+  }
+
+  .tv-base {
+    width: 100%;
+    height: auto;
   }
 
   .tv-screen {
-    top: 172px;
-    left: 108px;
-    width: 175px;
-    height: 130px;
+    top: 34.2%;
+    left: 21.7%;
+    width: 35%;
+    height: 29%;
     transform: perspective(600px) rotateY(-10deg);
   }
 
+  .text-panel {
+    max-width: 90%;
+    text-align: center;
+  }
+
   .text-panel h1 {
-    font-size: 2.5rem;
+    font-size: 2.2rem;
   }
 
   .text-panel p {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
   }
 
   h1 {
-    font-size: 2.5rem;
+    font-size: 2.4rem;
   }
 
   h3 {
     font-size: 1.2rem;
   }
 }
+
