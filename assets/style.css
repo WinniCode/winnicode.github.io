@@ -167,6 +167,7 @@ h3:after {
 
   .tv-wrapper {
     margin: 0 auto;
+    max-width: 90%;
   }
 
   .tv-screen {
