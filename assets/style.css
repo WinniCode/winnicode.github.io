@@ -134,7 +134,7 @@ h3 {
   font-family: "Emilys Candy", serif;
   text-transform: uppercase;
   font-weight: 700;
-  font-size: 15px;
+  font-size: 20px;
   letter-spacing: 0.1em;
   margin-bottom: 10px;
   position: relative;
@@ -167,8 +167,6 @@ h3:after {
 
   .tv-wrapper {
     margin: 0 auto;
-    transform: scale(0.8);
-    transform-origin: top center;
   }
 
   .tv-screen {
