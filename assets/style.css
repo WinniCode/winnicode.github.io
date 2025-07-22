@@ -27,10 +27,10 @@ body {
 
 .content-wrapper {
   display: flex;
+  flex-direction: row; /* Default desktop */
   align-items: center;
-  gap: 4rem;
-  flex-wrap: wrap;
   justify-content: center;
+  gap: 4rem;
 }
 
 /* Text */
@@ -81,7 +81,7 @@ body {
   transform: perspective(600px) rotateY(-10deg);
 }
 
-/* CRT Screen */
+/* CRT */
 .crt {
   position: relative;
   width: 100%;
@@ -130,7 +130,7 @@ body {
   animation: scan 0.18s linear infinite;
 }
 
-/* Flicker + Scanlines */
+/* Flicker */
 @keyframes flicker {
   0%, 100% { opacity: 1; }
   48% { opacity: 0.95; }
@@ -140,6 +140,7 @@ body {
   60% { opacity: 0.97; }
 }
 
+/* Scan scroll */
 @keyframes scan {
   0% { background-position: 0 0; }
   100% { background-position: 0 3px; }
@@ -181,11 +182,10 @@ h3:after {
   margin: 5px 0 0 10px;
 }
 
-/* Responsive Design */
+/* ✅ Responsive for Mobile */
 @media (max-width: 768px) {
   .content-wrapper {
     flex-direction: column;
-    align-items: center;
     gap: 2rem;
   }
 
@@ -196,10 +196,12 @@ h3:after {
   }
 
   .tv-screen {
-    top: 34.2%;
-    left: 21.7%;
     width: 55%;
     height: 30%;
+  }
+
+  h1 {
+    font-size: 2.5rem;
   }
 
   .text-panel h1 {
@@ -208,10 +210,6 @@ h3:after {
 
   .text-panel p {
     font-size: 1.2rem;
-  }
-
-  h1 {
-    font-size: 2.5rem;
   }
 
   h3 {
