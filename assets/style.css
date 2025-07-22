@@ -157,7 +157,7 @@ body {
 
   .content-wrapper {
     flex-direction: column;
-    gap: 2rem;
+    gap: 1rem;
     align-items: center;
     justify-content: center;
   }
@@ -170,6 +170,6 @@ body {
   .text-panel {
     transform: scale(0.8);
     max-width: 100%;
-    padding: 0 1rem;
+    padding: 0 0.5rem;
   }
 }
