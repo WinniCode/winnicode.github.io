@@ -167,6 +167,8 @@ h3:after {
 
   .tv-wrapper {
     margin: 0 auto;
+    transform: scale(0.8);
+    transform-origin: top center;
   }
 
   .tv-screen {
