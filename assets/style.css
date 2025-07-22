@@ -159,35 +159,14 @@ h3:after {
 }
 
 /* ✅ Responsive */
-@media (max-width: 90%) {
-  html, body {
-    height: 100vh;
-  }
-
-  body {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .outer-wrapper {
-    height: auto;
-    padding: 1rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-
+@media (max-width: 768px) {
   .content-wrapper {
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
     gap: 2rem;
   }
 
   .tv-wrapper {
+    margin: 0 auto;
     transform: scale(0.8);
     transform-origin: top center;
   }
@@ -213,6 +192,6 @@ h3:after {
   }
 
   h3 {
-    font-size: 1.0rem;
+    font-size: 1.2rem;
   }
 }
