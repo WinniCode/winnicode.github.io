@@ -8,60 +8,31 @@ body {
   background-attachment: scroll;
   font-family: 'Emilys Candy', cursive;
   font-size: 22px;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 /* Layout */
 .outer-wrapper {
-  width: 90%;
+  width: 100%;
   max-width: 1200px;
   padding: 2rem;
+  margin: 0 auto;
   box-sizing: border-box;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .content-wrapper {
   display: flex;
-  flex-direction: row; /* Default desktop */
-  align-items: center;
+  flex-direction: row;
   justify-content: center;
-  gap: 4rem;
-}
-
-/* Text */
-.text-panel {
-  color: #41857a;
-  max-width: 600px;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
   align-items: center;
-}
-
-.text-panel h1 {
-  font-size: 3.5rem;
-  margin-bottom: 1rem;
-}
-
-.text-panel p {
-  font-size: 1.5rem;
-  line-height: 1.6;
+  gap: 4rem;
 }
 
 /* TV */
 .tv-wrapper {
   position: relative;
-  width: 80%;
-  max-width: 500px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  width: 500px;
+  height: auto;
+  flex-shrink: 0;
 }
 
 .tv-base {
@@ -69,12 +40,13 @@ body {
   display: block;
 }
 
+/* Fixed size overlay aligned to TV screen */
 .tv-screen {
   position: absolute;
-  top: 34.2%;
-  left: 21.7%;
-  width: 35%;
-  height: 29%;
+  top: 172px;   /* Match your TV image */
+  left: 108px;
+  width: 175px;
+  height: 130px;
   overflow: hidden;
   border-radius: 26%;
   box-shadow: inset 0 0 12px #0ff8;
@@ -83,7 +55,6 @@ body {
 
 /* CRT */
 .crt {
-  position: relative;
   width: 100%;
   height: 100%;
   background-color: black;
@@ -130,20 +101,25 @@ body {
   animation: scan 0.18s linear infinite;
 }
 
-/* Flicker */
-@keyframes flicker {
-  0%, 100% { opacity: 1; }
-  48% { opacity: 0.95; }
-  50% { opacity: 0.9; }
-  52% { opacity: 0.96; }
-  56% { opacity: 0.92; }
-  60% { opacity: 0.97; }
+/* Text */
+.text-panel {
+  color: #41857a;
+  max-width: 600px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
 }
 
-/* Scan scroll */
-@keyframes scan {
-  0% { background-position: 0 0; }
-  100% { background-position: 0 3px; }
+.text-panel h1 {
+  font-size: 3.5rem;
+  margin-bottom: 1rem;
+}
+
+.text-panel p {
+  font-size: 1.5rem;
+  line-height: 1.6;
 }
 
 /* Headings */
@@ -182,26 +158,23 @@ h3:after {
   margin: 5px 0 0 10px;
 }
 
-/* ✅ Responsive for Mobile */
+/* ✅ Responsive */
 @media (max-width: 768px) {
   .content-wrapper {
     flex-direction: column;
     gap: 2rem;
   }
 
-  .tv-wrapper,
-  .text-panel {
-    width: 100%;
-    max-width: 100%;
+  .tv-wrapper {
+    margin: 0 auto;
   }
 
   .tv-screen {
-    width: 55%;
-    height: 30%;
-  }
-
-  h1 {
-    font-size: 2.5rem;
+    top: 172px;
+    left: 108px;
+    width: 175px;
+    height: 130px;
+    transform: perspective(600px) rotateY(-10deg);
   }
 
   .text-panel h1 {
@@ -210,6 +183,10 @@ h3:after {
 
   .text-panel p {
     font-size: 1.2rem;
+  }
+
+  h1 {
+    font-size: 2.5rem;
   }
 
   h3 {
