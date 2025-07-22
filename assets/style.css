@@ -159,38 +159,85 @@ h3:after {
 }
 
 /* ✅ Responsive */
-@media (max-width: 80%) {
+@media (max-width: 768px) {
+  html, body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .outer-wrapper {
+    width: 100vw;
+    height: 100vh;
+    padding: 1rem;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
   .content-wrapper {
     flex-direction: column;
-    gap: 2rem;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    gap: 1rem;
+    align-items: center;
+    justify-content: center;
   }
 
   .tv-wrapper {
-    margin: 0 auto;
-    max-width: 90%;
+    transform: scale(0.75);
+    transform-origin: top center;
+    max-width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .tv-base {
+    width: 100%;
+    height: auto;
   }
 
   .tv-screen {
-    top: 172px;
-    left: 108px;
-    width: 175px;
-    height: 130px;
+    top: 34.2%;
+    left: 21.7%;
+    width: 35%;
+    height: 29%;
     transform: perspective(600px) rotateY(-10deg);
   }
 
+  .text-panel {
+    max-width: 90%;
+    padding: 0.5rem;
+    text-align: center;
+  }
+
   .text-panel h1 {
-    font-size: 2.5rem;
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
   }
 
   .text-panel p {
-    font-size: 1.2rem;
-  }
-
-  h1 {
-    font-size: 2.5rem;
+    font-size: 1rem;
+    line-height: 1.4;
   }
 
   h3 {
     font-size: 1.2rem;
+    margin: 0.5rem 0;
+  }
+
+  h1 {
+    font-size: 2.2rem;
   }
 }
