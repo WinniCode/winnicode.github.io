@@ -159,13 +159,9 @@ h3:after {
 }
 
 /* ✅ Responsive */
-@media (max-width: 768px) {
+@media (max-width: 90%) {
   html, body {
     height: 100vh;
-    width: 100vw;
-    margin: 0;
-    padding: 0;
-    overflow-x: hidden;
   }
 
   body {
@@ -176,63 +172,47 @@ h3:after {
   }
 
   .outer-wrapper {
-    width: 100%;
-    padding: 1rem 0.5rem;
-    box-sizing: border-box;
+    height: auto;
+    padding: 1rem;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
   }
 
   .content-wrapper {
     flex-direction: column;
     align-items: center;
-    gap: 1.5rem;
-    width: 100%;
+    justify-content: center;
+    gap: 2rem;
   }
 
   .tv-wrapper {
     transform: scale(0.8);
     transform-origin: top center;
-    width: 100%;
-    max-width: 100%;
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-  }
-
-  .tv-base {
-    width: 100%;
-    height: auto;
   }
 
   .tv-screen {
-    top: 34.2%;
-    left: 21.7%;
-    width: 35%;
-    height: 29%;
+    top: 172px;
+    left: 108px;
+    width: 175px;
+    height: 130px;
     transform: perspective(600px) rotateY(-10deg);
   }
 
-  .text-panel {
-    max-width: 90%;
-    text-align: center;
-  }
-
   .text-panel h1 {
-    font-size: 2.2rem;
+    font-size: 2.5rem;
   }
 
   .text-panel p {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
   }
 
   h1 {
-    font-size: 2.4rem;
+    font-size: 2.5rem;
   }
 
   h3 {
     font-size: 1.2rem;
   }
 }
-
