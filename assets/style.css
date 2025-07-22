@@ -31,6 +31,8 @@ body {
   display: flex;
   align-items: center;
   gap: 4rem;
+  max-width: 80%;
+  height: 80%;
 }
 
 /* Center text inside its panel */
