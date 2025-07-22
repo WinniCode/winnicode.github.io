@@ -15,8 +15,10 @@ body {
 
 /* Outer wrapper centers the whole block */
 .outer-wrapper {
-  width: 100%;
-  max-width: 100%;
+  width: 90%;
+  max-width: 90%;
+  height: 90%;
+  max-height: 90%;
   padding: 2rem;
   box-sizing: border-box;
   display: flex;
