@@ -159,7 +159,6 @@ body {
   100% { background-position: 0 3px; }
 }
 
-/* Mobile Styles */
 @media (max-width: 768px) {
   body {
     flex-direction: column;
@@ -177,13 +176,15 @@ body {
   }
 
   .tv-wrapper {
-    transform: scale(0.8); /* Reduce size by 20% */
+    transform: scale(0.8);
     max-width: 100%;
+    order: 1; /* Show above text */
   }
 
   .text-panel {
     transform: scale(0.8);
     max-width: 100%;
     padding: 0 0.5rem;
+    order: 2; /* Show below TV */
   }
 }
