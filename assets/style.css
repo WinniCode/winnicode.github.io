@@ -192,14 +192,12 @@ body {
     height: auto;
   }
 
-  .tv-screen {
-    /* You may want to adjust the position and size
-       if things look misaligned when the TV is stretched */
-    top: 34%;
-    left: 21%;
-    width: 58%;            /* Adjust if needed for better fit */
-    height: 30%;
-  }
+.tv-screen {
+  top: 35vw;
+  left: 22vw;
+  width: 56vw;
+  height: 31vw;
+}
 
   .text-panel {
     order: 2;
