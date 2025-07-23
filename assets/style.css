@@ -8,21 +8,27 @@ body {
   background-position: top left;
   font-family: 'Emilys Candy', cursive;
   font-size: 22px;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+
+  /* REMOVE height: 100vh */
+  /* REMOVE display: flex; justify-content: center; align-items: center; */
+
+  min-height: 100vh;
+  overflow-x: hidden;
 }
+
 
 .outer-wrapper {
   width: 90%;
   max-width: 1200px;
   padding: 2rem;
   box-sizing: border-box;
+
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start; /* Align to top so content grows down */
+  flex-wrap: wrap;         /* Optional: allows wrapping on narrow screens */
 }
+
 
 .content-wrapper {
   display: flex;
@@ -124,7 +130,9 @@ body {
   color: #41857a;
   max-width: 500px;
   text-align: center;
+  margin: 2rem 0; /* Add spacing so it doesn't bump against edges */
 }
+
 
 .text-panel h1 {
   font-size: 3.5rem;
