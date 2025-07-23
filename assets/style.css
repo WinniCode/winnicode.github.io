@@ -20,14 +20,15 @@ body {
 .outer-wrapper {
   width: 90%;
   max-width: 1200px;
+  margin: 0 auto;              /* Center horizontally */
   padding: 2rem;
   box-sizing: border-box;
 
   display: flex;
   justify-content: center;
-  align-items: flex-start; /* Align to top so content grows down */
-  flex-wrap: wrap;         /* Optional: allows wrapping on narrow screens */
+  align-items: flex-start;     /* Align items to the top */
 }
+
 
 
 .content-wrapper {
