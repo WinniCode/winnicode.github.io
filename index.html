@@ -41,7 +41,7 @@
         <img src="images/tv5.png" class="tv-base" alt="Retro TV" />
         <div class="tv-screen">
           <div class="crt">
-            <img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExeDJ4bGZ4bGphYXFxczVyNjZ4bjFldWU4aTlqeTB0aHdlcmpqYXBnaCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/M6zlLCAQALGta/giphy.gif" alt="CRT Animation" />
+            <img id="crt-gif" alt="CRT Animation" />
             <div class="scanlines"></div>
           </div>
         </div>
@@ -49,8 +49,33 @@
       
     </div>
   </div>
+  <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    // Array of GIF URLs
+    const gifs = [
+      "https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExeDJ4bGZ4bGphYXFxczVyNjZ4bjFldWU4aTlqeTB0aHdlcmpqYXBnaCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/M6zlLCAQALGta/giphy.gif",
+      "https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExNTd6dGMzejVpNHoybGczeHJnMXZhMHRwMWJnMW5naXV6a2o0cm1rYyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3caEcViLVTCik/giphy.gif",
+      "https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExcHhnaWJkaXh2ODBudHY4eXd1bXBnbjRtaDM0a2U1ZnEzcWptMXk0eSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/txcIHRNl2vcDm/giphy.gif",
+      "https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExZHA2cGU1cm85MTR1cXFmOTJsaGIzem9iZ2x2bDY3c3R2dHpmaHl2dCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/AAGzmXefPMzzG/giphy.gif",
+      "https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExbDJwcGxrZ2V3enMxNjMwYXFwOWF6a2VkdmZ5Z2hhaGlubXhtM3hidCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/6UDorPg1oGRQ4/giphy.gif"
+      // Add more GIF URLs as needed
+    ];
+
+    // Pick a random GIF
+    const randomIndex = Math.floor(Math.random() * gifs.length);
+    const selectedGif = gifs[randomIndex];
+
+    // Inject into the image element
+    const imgElement = document.getElementById("crt-gif");
+    if (imgElement) {
+      imgElement.src = selectedGif;
+    }
+  });
+</script>
+
 </body>
 </html>
+
 
 
 
