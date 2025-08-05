@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const videoElement = document.getElementById("crt-video");
 
   // Dynamically build video paths from 1.mp4 to 23.mp4
-  const videoPaths = Array.from({ length: 24 }, (_, i) => `assets/c/${i + 1}.mp4`);
+  const videoPaths = Array.from({ length: 25 }, (_, i) => `assets/c/${i + 1}.mp4`);
 
   // Fisher-Yates shuffle
   function shuffle(array) {
