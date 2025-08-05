@@ -21,7 +21,8 @@ document.addEventListener("DOMContentLoaded", () => {
       "https://media1.tenor.com/m/_YX2qZF85oEAAAAC/dott-lucas-arts.gif",
       "https://media1.tenor.com/m/uN2JBbgqs9kAAAAC/sam-and-max-samuel-dog.gif",
       "https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHBzMjVkcmU1Z3Q3dXZnaDRkZTllZTQ0MWNidXd6bnpraWxwYXNreiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/xT0xepBLaRaduNgkne/giphy.gif",
-      "https://media1.tenor.com/m/tjL7ZLQIAMcAAAAd/zelda-ocarina-of-time.gif"
+      "https://media1.tenor.com/m/tjL7ZLQIAMcAAAAd/zelda-ocarina-of-time.gif",
+      "https://media1.tenor.com/m/lFXZZue86qcAAAAC/chase-rock.gif"
       // Add more GIF URLs as needed
     ];
 
@@ -59,6 +60,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Change every 5 seconds
     setInterval(updateGif, 4000);
   });
+
 
 
 
