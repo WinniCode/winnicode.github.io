@@ -2,7 +2,7 @@
 body {
   margin: 0;
   background-color: #FDC26F;
-  background-image: url('tile.png');
+  background-image: url('tile2.png');
   background-repeat: repeat;
   background-size: auto;
   background-position: top left;
@@ -233,6 +233,7 @@ a {
     padding: 0.5rem;
   }
 }
+
 
 
 
