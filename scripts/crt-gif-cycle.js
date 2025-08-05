@@ -35,7 +35,13 @@ document.addEventListener("DOMContentLoaded", () => {
       "http://66.media.tumblr.com/bd93d0ee3df3a7ac4f25bb07b46eaec9/tumblr_inline_ns3kgdil4D1r2gkqp_500.gif",
       "https://canada1.discourse-cdn.com/flex036/uploads/retrogameboards/original/2X/e/e1d335221bf7583d2b05d9cca255b9527af5c3df.gif",
       "https://66.media.tumblr.com/c63c4a5edc0a41dab17fe186f5a3e513/tumblr_inline_o3iyjr7Bt41ri065t_500.gif",
-      "  
+      "https://canada1.discourse-cdn.com/flex036/uploads/retrogameboards/original/2X/2/2c6bcbd3ae0f1bde65715c77edf81c0abaa0762a.gif",
+      "https://media1.tenor.com/m/lbObw07b8FIAAAAC/pacman-pac.gif",
+      "https://media1.tenor.com/m/cu1UK8Xw8kcAAAAC/dig-dug-video-game.gif",
+      "https://media1.tenor.com/m/RLrmkvTAs3UAAAAC/retro-tetris.gif",
+      "https://media1.tenor.com/m/V4N-smXOuwUAAAAC/space-invaders-arcade.gif",
+      "https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExeXd6d3ZsZ2puYTdtbDd1anljdHRnYzRtc2lvN3V6ZDJsdjhjbjdlOCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/PlgNz2gB8Q2fm/giphy.gif",
+      "https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExZGNxbm9hOW9oNmVyc202ZjFxYXJtaXF6bzluNXl6YW5jNTNobnphcSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/11BVzJf1NYWEo/giphy.gif"  
         
       // Add more GIF URLs as needed
     ];
@@ -74,6 +80,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Change every 5 seconds
     setInterval(updateGif, 4500);
   });
+
 
 
 
