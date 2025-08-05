@@ -12,7 +12,16 @@ document.addEventListener("DOMContentLoaded", () => {
       "https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExMnNyOTJzZ2VzaTZqZzZtZXNrazBjcDJycjhxNTZpcHJwaDVodTkxYiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/YaooEfKWBBD68/giphy.gif",
       "https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExMnNyOTJzZ2VzaTZqZzZtZXNrazBjcDJycjhxNTZpcHJwaDVodTkxYiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/YaooEfKWBBD68/giphy.gif",
       "https://media1.tenor.com/m/IYj-G8rBGPgAAAAd/resident-evil-remake.gif",
-      "https://media1.tenor.com/m/ipxMlwtf_SIAAAAd/bubble-bobble-bubble.gif"
+      "https://media1.tenor.com/m/ipxMlwtf_SIAAAAd/bubble-bobble-bubble.gif",
+      "https://media1.tenor.com/m/fkegkFdFZUQAAAAC/sega-mega-drive-sega-genesis.gif",
+      "https://media1.tenor.com/m/yfDpV04snpEAAAAd/sega-mega-drive-sega-genesis.gif",
+      "https://i.makeagif.com/media/2-14-2016/Pa3luf.gif",
+      "https://media1.tenor.com/m/ODjpfG9wx7YAAAAC/planets-dying-cloud-barret.gif",
+      "https://media1.tenor.com/m/BJe10_niHpkAAAAC/vivi-ornitier.gif",
+      "https://media1.tenor.com/m/_YX2qZF85oEAAAAC/dott-lucas-arts.gif",
+      "https://media1.tenor.com/m/uN2JBbgqs9kAAAAC/sam-and-max-samuel-dog.gif",
+      "https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHBzMjVkcmU1Z3Q3dXZnaDRkZTllZTQ0MWNidXd6bnpraWxwYXNreiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/xT0xepBLaRaduNgkne/giphy.gif",
+      "https://media1.tenor.com/m/tjL7ZLQIAMcAAAAd/zelda-ocarina-of-time.gif"
       // Add more GIF URLs as needed
     ];
 
@@ -32,3 +41,4 @@ document.addEventListener("DOMContentLoaded", () => {
     // Cycle to the next one every 5 seconds
     setInterval(showNextGif, 5000);
   });
+
