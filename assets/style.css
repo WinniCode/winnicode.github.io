@@ -110,7 +110,7 @@ body {
 .crt video {
   width: 100%;
   height: 100%;
-  object-fit: contain;  /* Use contain to ensure the full video is visible */
+  object-fit: cover;  /* Use contain to ensure the full video is visible */
   filter:
     contrast(1.2)
     saturate(0.5)
@@ -233,6 +233,7 @@ a {
     padding: 0.5rem;
   }
 }
+
 
 
 
