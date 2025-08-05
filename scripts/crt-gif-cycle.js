@@ -25,20 +25,20 @@ document.addEventListener("DOMContentLoaded", () => {
       // Add more GIF URLs as needed
     ];
 
+   
     const imgElement = document.getElementById("crt-gif");
-    let currentIndex = 0;
 
-    function showNextGif() {
+    function setRandomGif() {
       if (!imgElement) return;
 
-      imgElement.src = gifs[currentIndex] + '?t=' + Date.now(); // Force reload
-      currentIndex = (currentIndex + 1) % gifs.length;
+      const randomIndex = Math.floor(Math.random() * gifs.length);
+      imgElement.src = gifs[randomIndex];
     }
 
-    // Show the first GIF immediately
-    showNextGif();
+    // Set initial GIF
+    setRandomGif();
 
-    // Cycle to the next one every 5 seconds
-    setInterval(showNextGif, 5000);
+    // Update GIF every 5 seconds
+    setInterval(setRandomGif, 5000);
   });
 
