@@ -112,9 +112,9 @@ body {
   height: 100%;
   object-fit: cover;  /* Use contain to ensure the full video is visible */
   filter:
-    contrast(1.2)
-    saturate(0.5)
-    brightness(1.1)
+    contrast(1)
+    saturate(0.1)
+    brightness(1)
     hue-rotate(-2deg)
     blur(0.3px);
   transform: scale(1.01);
@@ -233,6 +233,7 @@ a {
     padding: 0.5rem;
   }
 }
+
 
 
 
