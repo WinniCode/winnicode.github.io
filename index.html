@@ -68,25 +68,28 @@
       // Add more GIF URLs as needed
     ];
 
-     const imgElement = document.getElementById("crt-gif");
+    const imgElement = document.getElementById("crt-gif");
+    let currentIndex = 0;
 
-    function setRandomGif() {
+    function showNextGif() {
       if (!imgElement) return;
 
-      const randomIndex = Math.floor(Math.random() * gifs.length);
-      imgElement.src = gifs[randomIndex];
+      imgElement.src = gifs[currentIndex] + '?t=' + Date.now(); // Force reload
+      currentIndex = (currentIndex + 1) % gifs.length;
     }
 
-    // Set initial GIF
-    setRandomGif();
+    // Show the first GIF immediately
+    showNextGif();
 
-    // Update GIF every 5 seconds
-    setInterval(setRandomGif, 5000);
+    // Cycle to the next one every 5 seconds
+    setInterval(showNextGif, 5000);
   });
 </script>
 
+
 </body>
 </html>
+
 
 
 
