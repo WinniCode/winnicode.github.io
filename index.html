@@ -68,20 +68,26 @@
       // Add more GIF URLs as needed
     ];
 
-    // Pick a random GIF
-    const randomIndex = Math.floor(Math.random() * gifs.length);
-    const selectedGif = gifs[randomIndex];
+     const imgElement = document.getElementById("crt-gif");
 
-    // Inject into the image element
-    const imgElement = document.getElementById("crt-gif");
-    if (imgElement) {
-      imgElement.src = selectedGif;
+    function setRandomGif() {
+      if (!imgElement) return;
+
+      const randomIndex = Math.floor(Math.random() * gifs.length);
+      imgElement.src = gifs[randomIndex];
     }
+
+    // Set initial GIF
+    setRandomGif();
+
+    // Update GIF every 5 seconds
+    setInterval(setRandomGif, 5000);
   });
 </script>
 
 </body>
 </html>
+
 
 
 
