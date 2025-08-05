@@ -28,17 +28,36 @@ document.addEventListener("DOMContentLoaded", () => {
    
     const imgElement = document.getElementById("crt-gif");
 
-    function setRandomGif() {
-      if (!imgElement) return;
+    let shuffledGifs = [];
+    let index = 0;
 
-      const randomIndex = Math.floor(Math.random() * gifs.length);
-      imgElement.src = gifs[randomIndex];
+    function shuffleArray(array) {
+      return array
+        .map(value => ({ value, sort: Math.random() }))
+        .sort((a, b) => a.sort - b.sort)
+        .map(({ value }) => value);
     }
 
-    // Set initial GIF
-    setRandomGif();
+    function getNextGif() {
+      if (index >= shuffledGifs.length) {
+        shuffledGifs = shuffleArray(gifs);
+        index = 0;
+      }
+      return shuffledGifs[index++];
+    }
 
-    // Update GIF every 5 seconds
-    setInterval(setRandomGif, 5000);
+    function updateGif() {
+      if (!imgElement) return;
+      const gif = getNextGif();
+      imgElement.src = gif + '?t=' + Date.now(); // Force reload to restart animation
+    }
+
+    // Initial shuffle and display
+    shuffledGifs = shuffleArray(gifs);
+    updateGif();
+
+    // Change every 5 seconds
+    setInterval(updateGif, 5000);
   });
+
 
