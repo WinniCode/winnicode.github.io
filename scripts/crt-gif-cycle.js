@@ -57,7 +57,8 @@ document.addEventListener("DOMContentLoaded", () => {
     updateGif();
 
     // Change every 5 seconds
-    setInterval(updateGif, 5000);
+    setInterval(updateGif, 4000);
   });
+
 
 
