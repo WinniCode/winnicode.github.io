@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
       "https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExdDdrZmhvcWh5cjAxMzEzcHJwYm5seWZyejdoeW41OTQybTBjZm92YyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/hXkPlkCl843hoxFcRh/giphy.gif",
       "https://media1.tenor.com/m/6wVBIH_BF5YAAAAd/running-fight.gif",
       "https://media1.tenor.com/m/cNKSW5wEqB0AAAAd/granturismo2-specialstageroute5.gif",
-      "https://media1.tenor.com/m/Mm4OdKCB-QIAAAAC/star-fox-star-fox-64.gif",
+      "https://media1.tenor.com/m/vFK_-X7fBk4AAAAd/star-fox-arwing.gif",
       "https://media1.tenor.com/m/0PkVM_sGKMAAAAAd/streets-of-rage-bare-knuckle.gif",
       "https://i.imgur.com/qfLfvI9.gif",
       "https://i.imgur.com/XWiwt4Q.gif",
@@ -80,6 +80,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Change every 5 seconds
     setInterval(updateGif, 4500);
   });
+
 
 
 
