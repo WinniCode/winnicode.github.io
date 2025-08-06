@@ -69,7 +69,7 @@ document.addEventListener("DOMContentLoaded", () => {
   videoElement.onloadedmetadata = () => {
     const duration = videoElement.duration;
 
-    if (duration < 2) {
+    if (duration < 3) {
       videoElement.loop = true;
       shortVideoTimeout = setTimeout(() => {
         videoElement.loop = false;
