@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
       videoElement.onloadedmetadata = () => {
         const duration = videoElement.duration;
 
-        if (duration < 2) {
+        if (duration < 3) {
           // If very short, loop it and break after 5 sec
           videoElement.loop = true;
           shortVideoTimeout = setTimeout(() => {
