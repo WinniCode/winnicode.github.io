@@ -70,29 +70,28 @@ function goToSection(index) {
         updateNavButtons();
       }
     },
-    onComplete: () => {
-      currentSection = index;
-      updateNavButtons();
-
-      if (index >= 1) {
-        gsap.to(".project-bg-fade", {
-          opacity: 1,
-          duration: 1.2,
-          ease: "power2.out"
-        });
-      } else {
-        gsap.to(".project-bg-fade", {
-          opacity: 0,
-          duration: 0.8,
-          ease: "power2.in"
-        });
-      }
-
-      document.body.classList.add("no-free-scroll");
-      revealCurrentSection();
-      ScrollTrigger.refresh();
-      isAnimating = false;
+      onComplete: () => {
+    currentSection = index;
+    updateNavButtons();
+  
+    if (index >= 1) {
+      gsap.to(".project-bg-fade", {
+        opacity: 1,
+        duration: 1.2,
+        ease: "power2.out"
+      });
+    } else {
+      gsap.to(".project-bg-fade", {
+        opacity: 0,
+        duration: 0.8,
+        ease: "power2.in"
+      });
     }
+  
+    revealCurrentSection();
+    ScrollTrigger.refresh();
+    isAnimating = false;
+  }
   });
 }
 
