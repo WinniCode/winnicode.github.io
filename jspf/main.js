@@ -121,7 +121,7 @@ window.addEventListener("wheel", (e) => {
 }, { passive: false });
 
 
-  const heroTl = gsap.timeline({
+  cconst heroTl = gsap.timeline({
     scrollTrigger: {
       trigger: ".hero",
       start: "top top",
@@ -135,27 +135,38 @@ window.addEventListener("wheel", (e) => {
     .to(".hero-middle", { y: 280, ease: "none" }, 0)
     .to(".hero-near", { y: 450, ease: "none" }, 0);
 
-  gsap.to(".hero-sky, .hero-near", {
-    opacity: 0,
-    ease: "none",
-    scrollTrigger: {
-      trigger: ".hero",
-      start: "50% top",
-      end: "bottom top",
-      scrub: true
-    }
-  });
+gsap.to(".hero-sky", {
+  opacity: 0,
+  ease: "power1.inOut",
+  scrollTrigger: {
+    trigger: ".hero",
+    start: "30% top",
+    end: "80% top",
+    scrub: true
+  }
+});
 
-  gsap.to(".project-bg-fade", {
-    opacity: 1,
-    ease: "none",
-    scrollTrigger: {
-      trigger: ".first-project",
-      start: "top 80%",
-      end: "top 20%",
-      scrub: true
-    }
-  });
+  gsap.to(".hero-near", {
+  opacity: 0,
+  ease: "none",
+  scrollTrigger: {
+    trigger: ".hero",
+    start: "70% top",
+    end: "bottom top", 
+    scrub: true
+  }
+});
+
+gsap.to(".project-bg-fade", {
+  opacity: 1,
+  ease: "power2.inOut",
+  scrollTrigger: {
+    trigger: ".first-project",
+    start: "top 10%", 
+    end: "top top",
+    scrub: true
+  }
+});
 
   gsap.utils.toArray(".project-image img, .project-image video").forEach((media) => {
     gsap.fromTo(media,
