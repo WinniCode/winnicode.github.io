@@ -96,40 +96,42 @@ body {
 
 .about-container {
   position: absolute;
-  top: 100%; /* Starts exactly at the bottom of the 'About' text */
+  top: 100%; 
   left: 50%;
   transform: translateX(-50%);
   display: flex;
   flex-direction: column;
   align-items: center;
-  z-index: 10000;
   pointer-events: none;
-  width: 300px; /* Gives the text room to breathe */
 }
 
 .about-line {
   width: 1px;
   height: 0; 
-  background: #00d1ff; /* Using your project blue for a nice accent */
-  margin-bottom: 0px;
+  background: #00d1ff;
 }
 
 .about-box {
-  padding: 15px;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 12px;
-  background: rgba(5, 8, 22, 0.8);
-  backdrop-filter: blur(15px);
-  -webkit-backdrop-filter: blur(15px);
-  opacity: 0;
-  transform: translateY(-5px) scale(0.95);
+  width: 1px;        
+  height: 0;      
+  overflow: hidden;
+  border: 1px solid rgba(0, 209, 255, 0.5);
+  background: rgba(5, 8, 22, 0.9);
+  backdrop-filter: blur(10px);
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-color: transparent; 
 }
 
 #about-text {
+  width: 280px;
+  padding: 20px;
   font-size: 0.8rem;
   line-height: 1.6;
   color: #fff;
-  letter-spacing: 1px;
+  opacity: 0; 
   text-align: center;
 }
 
