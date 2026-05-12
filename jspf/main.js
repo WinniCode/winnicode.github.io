@@ -114,6 +114,14 @@ window.addEventListener("touchmove", (e) => {
   }
 }, { passive: false });
 
+
+window.addEventListener("wheel", (e) => {
+  if (document.body.classList.contains("no-free-scroll")) {
+    e.preventDefault();
+  }
+}, { passive: false });
+
+
   const heroTl = gsap.timeline({
     scrollTrigger: {
       trigger: ".hero",
