@@ -29,7 +29,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     gsap.to(sectionNav, {
       opacity: currentSection === 0 ? 0 : 1,
-      pointerEvents: currentSection === 0 ? "none" : "auto",
       duration: 0.4
     });
   }
@@ -50,13 +49,10 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function goToSection(index) {
-    if (isAnimating) return;
-    if (index < 0 || index >= sections.length) return;
+    if (isAnimating || index < 0 || index >= sections.length) return;
 
     isAnimating = true;
-
     document.body.classList.remove("no-free-scroll");
-    document.body.style.overflow = "hidden";
 
     const isHeroToWork = currentSection === 0 && index === 1;
 
@@ -73,10 +69,7 @@ document.addEventListener("DOMContentLoaded", () => {
       onComplete: () => {
         currentSection = index;
         updateNavButtons();
-
         document.body.classList.add("no-free-scroll");
-        document.body.style.overflow = "";
-
         revealCurrentSection();
         ScrollTrigger.refresh();
         isAnimating = false;
@@ -115,8 +108,7 @@ document.addEventListener("DOMContentLoaded", () => {
   heroTl
     .to(".hero-far", { y: 150, scale: 1.05, ease: "none" }, 0)
     .to(".hero-middle", { y: 280, ease: "none" }, 0)
-    .to(".hero-near", { y: 450, ease: "none" }, 0)
-    .to(".scroll-indicator", { opacity: 0, y: 30, ease: "none" }, 0);
+    .to(".hero-near", { y: 450, ease: "none" }, 0);
 
   gsap.to(".hero-sky, .hero-near", {
     opacity: 0,
@@ -157,5 +149,6 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   gsap.set(".reveal", { opacity: 0, y: 80 });
+  document.body.classList.add("no-free-scroll");
   updateNavButtons();
 });
