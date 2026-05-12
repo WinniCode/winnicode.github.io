@@ -27,10 +27,18 @@ body::-webkit-scrollbar {
   height: 0 !important;
 }
 
+body {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  width: 100%;
+  overflow-x: hidden;
+}
+
 .no-free-scroll {
   touch-action: none;
   pointer-events: none;
   overflow: hidden !important;
+  overflow-y: hidden !important;
 }
 
 .hero-menu, 
