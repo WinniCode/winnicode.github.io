@@ -362,11 +362,12 @@ footer a:hover{
 
   .project,
   .project.alt{
-    min-height:auto;
+    min-height:100vh;
     display:flex;
     flex-direction:column;
-    gap:32px;
-    padding:90px 7vw;
+    justify-content:center;
+    gap:22px;
+    padding:70px 7vw;
   }
 
   .project.alt .project-image,
@@ -377,6 +378,7 @@ footer a:hover{
   .project-image{
     width:100%;
     aspect-ratio:4 / 3;
+    border-radius:20px;
   }
 
   .project-content{
@@ -385,26 +387,57 @@ footer a:hover{
   }
 
   .project-content h2{
-    font-size:clamp(2.2rem, 12vw, 4rem);
+    font-size:clamp(2rem, 10vw, 3.2rem);
+    margin:14px 0;
   }
 
   .project-content p{
-    font-size:1rem;
+    font-size:0.95rem;
+    line-height:1.55;
+  }
+
+  .project-tag{
+    font-size:0.7rem;
+    letter-spacing:3px;
   }
 
   .first-project{
-    padding-top:120px;
+    padding-top:90px;
+  }
+
+  footer{
+    min-height:100vh;
+    padding:70px 7vw;
+  }
+
+  .section-nav{
+    right:auto;
+    left:50%;
+    top:auto;
+    bottom:24px;
+    transform:translateX(-50%);
+    flex-direction:row;
+    gap:16px;
+  }
+
+  .nav-btn{
+    width:52px;
+    height:52px;
+    font-size:1.4rem;
   }
 
   .hero-menu{
     top:5vh;
     gap:10px;
-    padding:12px 18px;
+    padding:12px 16px;
   }
 
   .menu-link{
-    font-size:0.68rem;
+    font-size:0.65rem;
     letter-spacing:2px;
   }
 
+  .menu-separator{
+    font-size:0.7rem;
+  }
 }
