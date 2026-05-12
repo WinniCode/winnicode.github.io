@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
          .to(".about-box", { height: "160px", borderColor: "rgba(0, 209, 255, 0.5)", duration: 0.3, ease: "power2.out" })
          .to(".about-box", { width: "100%", duration: 0.5, ease: "expo.out" })
          .to("#about-text", { opacity: 1, duration: 0.2 })
-         .to("#about-text", { duration: 1.5, text: aboutContent, ease: "none" }, "-=0.1");
+         .to("#about-text", { duration: 3.0, text: aboutContent, ease: "none" }, "-=0.1");
 
 
   if (aboutTrigger) {
