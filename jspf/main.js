@@ -136,20 +136,19 @@ window.addEventListener("wheel", (e) => {
   }
 }, { passive: false });
 
+const heroTl = gsap.timeline({
+  scrollTrigger: {
+    trigger: ".hero",
+    start: "top top",
+    end: "bottom top",
+    scrub: true
+  }
+});
 
-  cconst heroTl = gsap.timeline({
-    scrollTrigger: {
-      trigger: ".hero",
-      start: "top top",
-      end: "bottom top",
-      scrub: true
-    }
-  });
-
-  heroTl
-    .to(".hero-far", { y: 150, scale: 1.05, ease: "none" }, 0)
-    .to(".hero-middle", { y: 280, ease: "none" }, 0)
-    .to(".hero-near", { y: 450, ease: "none" }, 0);
+heroTl
+  .to(".hero-far", { y: 150, scale: 1.05, ease: "none" }, 0)
+  .to(".hero-middle", { y: 280, ease: "none" }, 0)
+  .to(".hero-near", { y: 450, ease: "none" }, 0);
 
 gsap.to(".hero-sky", {
   opacity: 0,
@@ -162,7 +161,7 @@ gsap.to(".hero-sky", {
   }
 });
 
-  gsap.to(".hero-near", {
+gsap.to(".hero-near", {
   opacity: 0,
   ease: "none",
   scrollTrigger: {
@@ -174,23 +173,25 @@ gsap.to(".hero-sky", {
 });
 
 
-  gsap.utils.toArray(".project-image img, .project-image video").forEach((media) => {
-    gsap.fromTo(media,
-      { scale: 1.15 },
-      {
-        scale: 1,
-        ease: "none",
-        scrollTrigger: {
-          trigger: media,
-          start: "top bottom",
-          end: "bottom top",
-          scrub: true
-        }
+gsap.utils.toArray(".project-image img, .project-image video").forEach((media) => {
+  gsap.fromTo(media,
+    { scale: 1.15 },
+    {
+      scale: 1,
+      ease: "none",
+      scrollTrigger: {
+        trigger: media,
+        start: "top bottom",
+        end: "bottom top",
+        scrub: true
       }
-    );
-  });
+    }
+  );
+});
 
-  gsap.set(".reveal", { opacity: 0, y: 80 });
-  document.body.classList.add("no-free-scroll");
-  updateNavButtons();
+
+gsap.set(".reveal", { opacity: 0, y: 80 });
+document.body.classList.add("no-free-scroll");
+updateNavButtons();
+
 });
