@@ -17,6 +17,11 @@ body {
   -ms-overflow-style: none; /* IE/Edge */
 }
 
+.no-free-scroll {
+  overflow: hidden; 
+  height: 100vh;
+}
+
 body::-webkit-scrollbar {
   display: none; /* Chrome/Safari */
 }
