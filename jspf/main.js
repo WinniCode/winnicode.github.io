@@ -55,6 +55,7 @@ function goToSection(index){
     },
     ease: "power3.inOut",
     onComplete: () => {
+      ScrollTrigger.refresh();
       document.body.classList.add("no-free-scroll");
       isAnimating = false;
     }
