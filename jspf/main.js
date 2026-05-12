@@ -1,5 +1,16 @@
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
+// Reset scroll to top on refresh
+if (history.scrollRestoration) {
+  history.scrollRestoration = "manual";
+}
+
+window.scrollTo(0, 0);
+
+/* =========================================
+   SECTION NAVIGATION
+========================================= */
+
 const sections = [
   "#home",
   "#projects",
@@ -13,50 +24,96 @@ let isAnimating = false;
 
 const upBtn = document.querySelector("#nav-up");
 const downBtn = document.querySelector("#nav-down");
+const sectionNav = document.querySelector(".section-nav");
 
-function updateNavButtons(){
-
-  /* Hide nav entirely on hero */
-  if(currentSection === 0){
-    gsap.to(".section-nav", {
-      opacity:0,
-      pointerEvents:"none",
-      duration:0.4
-    });
+/* block manual user scrolling, but allow GSAP scrolling */
+function blockManualScroll(event) {
+  if (!isAnimating) {
+    event.preventDefault();
   }
-
-  else{
-    gsap.to(".section-nav", {
-      opacity:1,
-      pointerEvents:"auto",
-      duration:0.4
-    });
-  }
-
-  upBtn.disabled = currentSection === 0;
-  downBtn.disabled = currentSection === sections.length - 1;
 }
 
-function goToSection(index){
+window.addEventListener("wheel", blockManualScroll, { passive: false });
+window.addEventListener("touchmove", blockManualScroll, { passive: false });
+
+window.addEventListener("keydown", (event) => {
+  const blockedKeys = ["ArrowUp", "ArrowDown", "PageUp", "PageDown", "Home", "End", " "];
+
+  if (!isAnimating && blockedKeys.includes(event.key)) {
+    event.preventDefault();
+  }
+});
+
+function hideNav() {
+  gsap.to(sectionNav, {
+    opacity: 0,
+    pointerEvents: "none",
+    duration: 0.25
+  });
+}
+
+function showNav() {
+  gsap.to(sectionNav, {
+    opacity: 1,
+    pointerEvents: "auto",
+    duration: 0.4
+  });
+}
+
+function updateNavButtons() {
+  upBtn.disabled = currentSection === 0;
+  downBtn.disabled = currentSection === sections.length - 1;
+
+  if (currentSection === 0) {
+    hideNav();
+  } else {
+    showNav();
+  }
+}
+
+function revealCurrentSection() {
+  const current = document.querySelector(sections[currentSection]);
+  if (!current) return;
+
+  const reveal = current.querySelector(".reveal");
+
+  if (reveal) {
+    gsap.to(reveal, {
+      opacity: 1,
+      y: 0,
+      duration: 1.1,
+      ease: "power3.out"
+    });
+  }
+}
+
+function goToSection(index) {
   if (isAnimating) return;
   if (index < 0 || index >= sections.length) return;
 
   isAnimating = true;
-  currentSection = index;
-  updateNavButtons();
 
-  document.body.classList.remove("no-free-scroll");
+  // Keep nav hidden during movement.
+  hideNav();
+
+  const isMobile = window.innerWidth <= 900;
+  const isInitialHeroMove = currentSection === 0 && index === 1;
 
   gsap.to(window, {
-    duration: window.innerWidth <= 900 ? 1.8 : 2.2,
+    duration: isInitialHeroMove ? 3.4 : isMobile ? 1.8 : 2.2,
     scrollTo: {
-      y: sections[currentSection],
+      y: sections[index],
       offsetY: 0
     },
     ease: "power3.inOut",
     onComplete: () => {
+      currentSection = index;
+
+      revealCurrentSection();
+      updateNavButtons();
+
       ScrollTrigger.refresh();
-      document.body.classList.add("no-free-scroll");
+
       isAnimating = false;
     }
   });
@@ -75,15 +132,16 @@ document.querySelector('a[href="#projects"]')?.addEventListener("click", (event)
   goToSection(1);
 });
 
+document.querySelector('a[href="#"]')?.addEventListener("click", (event) => {
+  event.preventDefault();
+});
+
 updateNavButtons();
 
+/* =========================================
+   HERO PARALLAX
+========================================= */
 
-// Reset scroll to top on refresh
-if (history.scrollRestoration) {
-    history.scrollRestoration = 'manual';
-}
-
-// 1. MOTION ONLY (No opacity here for near image)
 const heroTl = gsap.timeline({
   scrollTrigger: {
     trigger: ".hero",
@@ -99,7 +157,6 @@ heroTl
   .to(".hero-near", { y: 450, ease: "none" }, 0)
   .to(".scroll-indicator", { opacity: 0, y: 30, ease: "none" }, 0);
 
-// 2. SKY FADE (Grouped)
 gsap.to(".hero-sky", {
   opacity: 0,
   ease: "power1.inOut",
@@ -111,8 +168,6 @@ gsap.to(".hero-sky", {
   }
 });
 
-// 3. NEAR IMAGE FADE (The Bug Fix)
-// immediateRender: false + a late start ensures it's solid on load
 gsap.to(".hero-near", {
   opacity: 0,
   ease: "none",
@@ -125,58 +180,43 @@ gsap.to(".hero-near", {
   }
 });
 
-// 4. THE SLOW CURTAIN
 gsap.to(".project-bg-fade", {
   opacity: 1,
   ease: "power2.inOut",
   scrollTrigger: {
     trigger: ".first-project",
-    start: "top 10%", 
+    start: "top 10%",
     end: "top top",
     scrub: true
   }
 });
 
-// 5. CONTENT REVEALS
-const projects = gsap.utils.toArray(".project");
-projects.forEach((project) => {
-  const content = project.querySelector(".reveal");
-  if (content) {
-    gsap.to(content, {
-      opacity: 1,
-      y: 0,
-      duration: 1.5,
-      ease: "power3.out",
-      scrollTrigger: {
-        trigger: content,
-        start: "top 85%",
-        toggleActions: "play none none reverse"
-      }
-    });
-  }
+/* =========================================
+   INITIAL REVEAL STATES
+========================================= */
+
+gsap.set(".reveal", {
+  opacity: 0,
+  y: 80
 });
 
-document.querySelectorAll('a[href^="#"]').forEach((link) => {
+/* =========================================
+   PROJECT IMAGE DEPTH
+========================================= */
 
-  link.addEventListener("click", function(event) {
-
-    const target = document.querySelector(
-      this.getAttribute("href")
-    );
-
-    if (!target) return;
-
-    event.preventDefault();
-
-    gsap.to(window, {
-      duration: 7.5,
-      scrollTo: {
-        y: target,
-        offsetY: 0
-      },
-      ease: "power2.inOut"
-    });
-
-  });
-
+gsap.utils.toArray(".project-image img, .project-image video").forEach((media) => {
+  gsap.fromTo(
+    media,
+    { scale: 1.08 },
+    {
+      scale: 1,
+      ease: "none",
+      scrollTrigger: {
+        trigger: media,
+        start: "top bottom",
+        end: "bottom top",
+        scrub: true
+      }
+    }
+  );
 });
