@@ -74,20 +74,26 @@ function goToSection(index) {
   if (index < 0 || index >= sections.length) return;
 
   isAnimating = true;
+  // Update state immediately so nav buttons and logic know where we are going
+  currentSection = index; 
+  
   hideNav();
 
-  const isInitialHeroMove = currentSection === 0 && index === 1;
+  const isInitialHeroMove = index === 1; // Simplify logic
   const isMobile = window.innerWidth <= 900;
 
   gsap.to(window, {
-    duration: isInitialHeroMove ? 7.5 : isMobile ? 1.8 : 2.2,
+    duration: isInitialHeroMove ? 7.5 : (isMobile ? 1.8 : 2.2),
     scrollTo: {
       y: sections[index],
-      offsetY: 0
+      offsetY: 0,
+      autoKill: false // CRITICAL: Prevents manual interaction from killing the animation
     },
     ease: isInitialHeroMove ? "power2.inOut" : "power3.inOut",
+    onStart: () => {
+       // Optional: visually prepare the next section
+    },
     onComplete: () => {
-      currentSection = index;
       revealCurrentSection();
       ScrollTrigger.refresh();
       updateNavButtons();
@@ -122,10 +128,13 @@ downBtn.addEventListener("click", () => {
 });
 
 /* hero menu */
-projectsLink?.addEventListener("click", (event) => {
-  event.preventDefault();
-  goToSection(1);
-});
+if (projectsLink) {
+  projectsLink.addEventListener("click", (event) => {
+    event.preventDefault();
+    event.stopPropagation(); // Stop the event from bubbling up to the window blockers
+    goToSection(1);
+  });
+}
 
 document.querySelector('.hero-menu a[href="#"]')?.addEventListener("click", (event) => {
   event.preventDefault();
