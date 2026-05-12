@@ -1,3 +1,7 @@
+window.onbeforeunload = function() {
+  window.scrollTo(0, 0);
+};
+
 document.addEventListener("DOMContentLoaded", () => {
   gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
@@ -18,14 +22,16 @@ document.addEventListener("DOMContentLoaded", () => {
   const resizeListener = () => {
     let vh = window.innerHeight * 0.01;
     document.documentElement.style.setProperty('--vh', `${vh}px`);
+    ScrollTrigger.refresh();
   };
 
   window.addEventListener('resize', resizeListener);
   resizeListener();
+  setTimeout(resizeListener, 150);
 
   function updateNavButtons() {
-    upBtn.disabled = currentSection === 0;
-    downBtn.disabled = currentSection === sections.length - 1;
+    if (upBtn) upBtn.disabled = currentSection === 0;
+    if (downBtn) downBtn.disabled = currentSection === sections.length - 1;
 
     gsap.to(sectionNav, {
       opacity: currentSection === 0 ? 0 : 1,
@@ -35,9 +41,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function revealCurrentSection() {
     const section = document.querySelector(sections[currentSection]);
-    if (!section) return;
-
-    const reveal = section.querySelector(".reveal");
+    const reveal = section?.querySelector(".reveal");
     if (reveal) {
       gsap.to(reveal, {
         opacity: 1,
@@ -81,13 +85,15 @@ document.addEventListener("DOMContentLoaded", () => {
     const blockedKeys = ["ArrowUp", "ArrowDown", "PageUp", "PageDown", "Home", "End", " "];
     if (blockedKeys.includes(e.key)) {
       e.preventDefault();
-      if (e.key === "ArrowUp") goToSection(currentSection - 1);
-      if (e.key === "ArrowDown" || e.key === " ") goToSection(currentSection + 1);
+      if (e.key === "ArrowUp" || e.key === "PageUp") goToSection(currentSection - 1);
+      else if (e.key === "ArrowDown" || e.key === "PageDown" || e.key === " ") goToSection(currentSection + 1);
+      else if (e.key === "Home") goToSection(0);
+      else if (e.key === "End") goToSection(sections.length - 1);
     }
   });
 
-  upBtn.addEventListener("click", () => goToSection(currentSection - 1));
-  downBtn.addEventListener("click", () => goToSection(currentSection + 1));
+  if (upBtn) upBtn.addEventListener("click", () => goToSection(currentSection - 1));
+  if (downBtn) downBtn.addEventListener("click", () => goToSection(currentSection + 1));
 
   if (projectsLink) {
     projectsLink.addEventListener("click", (e) => {
