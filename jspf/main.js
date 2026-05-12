@@ -1,3 +1,5 @@
+document.addEventListener("DOMContentLoaded", () => {
+
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
 if (history.scrollRestoration) {
@@ -223,4 +225,6 @@ gsap.utils.toArray(".project-image img, .project-image video").forEach((media) =
       }
     }
   );
+});
+
 });
