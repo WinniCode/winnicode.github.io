@@ -45,8 +45,10 @@ function goToSection(index){
   currentSection = index;
   updateNavButtons();
 
+  const isMobile = window.innerWidth <= 900;
+
   gsap.to(window, {
-    duration: 2.2,
+    duration: isMobile ? 1.6 : 2.2,
     scrollTo: {
       y: sections[currentSection],
       offsetY: 0
