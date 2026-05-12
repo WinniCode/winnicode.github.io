@@ -87,6 +87,53 @@ body {
   font-size: 0.8rem;
 }
 
+
+.about-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.about-container {
+  position: absolute;
+  top: 100%; /* Starts exactly at the bottom of the 'About' text */
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 10000;
+  pointer-events: none;
+  width: 300px; /* Gives the text room to breathe */
+}
+
+.about-line {
+  width: 1px;
+  height: 0; 
+  background: #00d1ff; /* Using your project blue for a nice accent */
+  margin-bottom: 0px;
+}
+
+.about-box {
+  padding: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  background: rgba(5, 8, 22, 0.8);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  opacity: 0;
+  transform: translateY(-5px) scale(0.95);
+}
+
+#about-text {
+  font-size: 0.8rem;
+  line-height: 1.6;
+  color: #fff;
+  letter-spacing: 1px;
+  text-align: center;
+}
+
+
 .scene {
   position: absolute;
   left: 50%;
