@@ -13,45 +13,50 @@ document.addEventListener("DOMContentLoaded", () => {
   const sections = ["#home", "#projects", "#project-2", "#project-3", "#contact"];
   let currentSection = 0;
   let isAnimating = false;
-  let aboutTl = gsap.timeline({ paused: true });
+  
   const aboutTrigger = document.querySelector('#about-trigger');
   const aboutWrapper = document.querySelector('.about-wrapper');
-  const aboutContent = "Hi, I'm Chris, a computaional biologist - passionate about bioinformatics, software engineering and UI design.";
-  let isAboutVisible = false;
+  const aboutContent = "Hi, I'm Chris, a computational biologist - passionate about bioinformatics, software engineering and UI design.";
 
   const upBtn = document.querySelector("#nav-up");
   const downBtn = document.querySelector("#nav-down");
   const sectionNav = document.querySelector(".section-nav");
   const projectsLink = document.querySelector('.hero-menu a[href="#projects"]');
 
+
+  let aboutTl = gsap.timeline({ paused: true });
+  
   aboutTl.to(".about-line", { height: "40px", duration: 0.4, ease: "power2.in" })
-       .to(".about-box", { height: "160px", borderColor: "rgba(0, 209, 255, 0.5)", duration: 0.3, ease: "power2.out" })
-       .to(".about-box", { width: "100%", duration: 0.5, ease: "expo.out" })
-       .to("#about-text", { opacity: 1, duration: 0.2 })
-       .to("#about-text", { duration: 1.5, text: aboutContent, ease: "none" }, "-=0.1");
+         .to(".about-box", { height: "160px", borderColor: "rgba(0, 209, 255, 0.5)", duration: 0.3, ease: "power2.out" })
+         .to(".about-box", { width: "100%", duration: 0.5, ease: "expo.out" })
+         .to("#about-text", { opacity: 1, duration: 0.2 })
+         .to("#about-text", { duration: 1.5, text: aboutContent, ease: "none" }, "-=0.1");
+
 
   if (aboutTrigger) {
-  aboutTrigger.addEventListener("click", (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    
-    if (aboutTl.reversed() || aboutTl.paused()) {
-      aboutTl.play();
-    } else {
-      aboutTl.reverse();
-    }
+    aboutTrigger.addEventListener("click", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      
+      if (aboutTl.reversed() || aboutTl.paused()) {
+        aboutTl.play();
+      } else {
+        aboutTl.reverse();
+      }
+    });
+  }
+
+
+  ["click", "touchstart"].forEach(evt => {
+    window.addEventListener(evt, (e) => {
+      if (!aboutTl.paused() && !aboutTl.reversed()) {
+        if (aboutWrapper && !aboutWrapper.contains(e.target)) {
+          aboutTl.reverse();
+        }
+      }
+    }, { passive: true });
   });
-}
 
-  const resizeListener = () => {
-    let vh = window.innerHeight * 0.01;
-    document.documentElement.style.setProperty('--vh', `${vh}px`);
-    ScrollTrigger.refresh();
-  };
-
-  window.addEventListener('resize', resizeListener);
-  resizeListener();
-  setTimeout(resizeListener, 150);
 
   function updateNavButtons() {
     if (upBtn) upBtn.disabled = currentSection === 0;
@@ -62,16 +67,6 @@ document.addEventListener("DOMContentLoaded", () => {
       duration: 0.4
     });
   }
-
-["click", "touchstart"].forEach(evt => {
-  window.addEventListener(evt, (e) => {
-    if (!aboutTl.paused() && !aboutTl.reversed()) {
-      if (aboutWrapper && !aboutWrapper.contains(e.target)) {
-        aboutTl.reverse();
-      }
-    }
-  }, { passive: true });
-});
 
   function revealCurrentSection() {
     const section = document.querySelector(sections[currentSection]);
@@ -86,92 +81,55 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-function goToSection(index) {
-  if (isAnimating || index < 0 || index >= sections.length) return;
-  if (!aboutTl.paused() && !aboutTl.reversed()) {
-    aboutTl.reverse();
-  }
+  function goToSection(index) {
+    if (isAnimating || index < 0 || index >= sections.length) return;
 
-  isAnimating = true;
+ 
+    if (!aboutTl.paused() && !aboutTl.reversed()) {
+      aboutTl.reverse();
+    }
 
-  const isHeroToWork = currentSection === 0 && index === 1;
-  const isReturningHome = index === 0;
+    isAnimating = true;
 
-  gsap.to(window, {
-    duration: isHeroToWork ? 7.5 : 2.2,
-    scrollTo: { y: sections[index], autoKill: false },
-    ease: "power2.inOut",
-    onStart: () => {
-      if (isReturningHome) {
+    const isHeroToWork = currentSection === 0 && index === 1;
+    const isReturningHome = index === 0;
+
+    gsap.to(window, {
+      duration: isHeroToWork ? 7.5 : 2.2,
+      scrollTo: { y: sections[index], autoKill: false },
+      ease: "power2.inOut",
+      onStart: () => {
+        if (isReturningHome) {
+          currentSection = index;
+          updateNavButtons();
+        }
+      },
+      onComplete: () => {
         currentSection = index;
         updateNavButtons();
+        
+        if (index >= 1) {
+          gsap.to(".project-bg-fade", { opacity: 1, duration: 1.2 });
+        } else {
+          gsap.to(".project-bg-fade", { opacity: 0, duration: 0.8 });
+        }
+        
+        revealCurrentSection();
+        ScrollTrigger.refresh();
+        isAnimating = false;
       }
-    },
-      onComplete: () => {
-    currentSection = index;
-    updateNavButtons();
-  
-    if (index >= 1) {
-      gsap.to(".project-bg-fade", {
-        opacity: 1,
-        duration: 1.2,
-        ease: "power2.out"
-      });
-    } else {
-      gsap.to(".project-bg-fade", {
-        opacity: 0,
-        duration: 0.8,
-        ease: "power2.in"
-      });
-    }
-  
-    revealCurrentSection();
-    ScrollTrigger.refresh();
-    isAnimating = false;
-  }
-  });
-}
-
-
-function toggleAbout() {
-  if (isAboutVisible) return;
-  isAboutVisible = true;
-
-  const tl = gsap.timeline();
-
-  tl.to(".about-line", {
-    height: "40px",
-    duration: 0.5,
-    ease: "power2.in"
-  });
-
-  tl.to(".about-box", {
-    height: "150px",
-    borderColor: "rgba(0, 209, 255, 0.5)", 
-    duration: 0.4,
-    ease: "power2.out"
-  });
-
-  tl.to(".about-box", {
-    width: "300px",
-    duration: 0.6,
-    ease: "expo.out"
-  });
-
-  tl.to("#about-text", { opacity: 1, duration: 0.3 });
-  tl.to("#about-text", {
-    duration: 2,
-    text: aboutContent,
-    ease: "none"
-  }, "-=0.2");
-}
-
-  if (aboutTrigger) {
-    aboutTrigger.addEventListener("click", (e) => {
-      e.preventDefault();
-      toggleAbout();
     });
   }
+
+
+  const resizeListener = () => {
+    let vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
+    ScrollTrigger.refresh();
+  };
+
+  window.addEventListener('resize', resizeListener);
+  resizeListener();
 
   window.addEventListener("keydown", (e) => {
     const blockedKeys = ["ArrowUp", "ArrowDown", "PageUp", "PageDown", "Home", "End", " "];
@@ -194,81 +152,57 @@ function toggleAbout() {
     });
   }
 
-window.addEventListener("touchstart", (e) => {
-  if (document.body.classList.contains("no-free-scroll")) {
-    this.touchY = e.touches[0].clientY;
-  }
-}, { passive: false });
 
-window.addEventListener("touchmove", (e) => {
-  if (isAnimating || document.body.classList.contains("no-free-scroll")) {
-    e.preventDefault();
-  }
-}, { passive: false });
+  window.addEventListener("wheel", (e) => {
+    if (isAnimating || document.body.classList.contains("no-free-scroll")) e.preventDefault();
+  }, { passive: false });
+
+  window.addEventListener("touchmove", (e) => {
+    if (isAnimating || document.body.classList.contains("no-free-scroll")) e.preventDefault();
+  }, { passive: false });
 
 
-window.addEventListener("wheel", (e) => {
-  if (isAnimating || document.body.classList.contains("no-free-scroll")) {
-    e.preventDefault();
-  }
-}, { passive: false });
-
-const heroTl = gsap.timeline({
-  scrollTrigger: {
-    trigger: ".hero",
-    start: "top top",
-    end: "bottom top",
-    scrub: true
-  }
-});
-
-heroTl
-  .to(".hero-far", { y: 150, scale: 1.05, ease: "none" }, 0)
-  .to(".hero-middle", { y: 280, ease: "none" }, 0)
-  .to(".hero-near", { y: 450, ease: "none" }, 0);
-
-gsap.to(".hero-sky", {
-  opacity: 0,
-  ease: "power1.inOut",
-  scrollTrigger: {
-    trigger: ".hero",
-    start: "30% top",
-    end: "80% top",
-    scrub: true
-  }
-});
-
-gsap.to(".hero-near", {
-  opacity: 0,
-  ease: "none",
-  scrollTrigger: {
-    trigger: ".hero",
-    start: "70% top",
-    end: "bottom top", 
-    scrub: true
-  }
-});
-
-
-gsap.utils.toArray(".project-image img, .project-image video").forEach((media) => {
-  gsap.fromTo(media,
-    { scale: 1.15 },
-    {
-      scale: 1,
-      ease: "none",
-      scrollTrigger: {
-        trigger: media,
-        start: "top bottom",
-        end: "bottom top",
-        scrub: true
-      }
+  const heroTl = gsap.timeline({
+    scrollTrigger: {
+      trigger: ".hero",
+      start: "top top",
+      end: "bottom top",
+      scrub: true
     }
-  );
-});
+  });
+
+  heroTl
+    .to(".hero-far", { y: 150, scale: 1.05, ease: "none" }, 0)
+    .to(".hero-middle", { y: 280, ease: "none" }, 0)
+    .to(".hero-near", { y: 450, ease: "none" }, 0);
+
+  gsap.to(".hero-sky", {
+    opacity: 0,
+    scrollTrigger: {
+      trigger: ".hero",
+      start: "30% top",
+      end: "80% top",
+      scrub: true
+    }
+  });
+
+  gsap.utils.toArray(".project-image img, .project-image video").forEach((media) => {
+    gsap.fromTo(media,
+      { scale: 1.15 },
+      {
+        scale: 1,
+        scrollTrigger: {
+          trigger: media,
+          start: "top bottom",
+          end: "bottom top",
+          scrub: true
+        }
+      }
+    );
+  });
 
 
-gsap.set(".reveal", { opacity: 0, y: 80 });
-document.body.classList.add("no-free-scroll");
-updateNavButtons();
-
+  gsap.set(".reveal", { opacity: 0, y: 80 });
+  document.body.classList.add("no-free-scroll");
+  updateNavButtons();
 });
