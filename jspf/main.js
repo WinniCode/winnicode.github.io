@@ -99,16 +99,38 @@ function goToSection(index) {
 }
 
 
-  function toggleAbout() {
-    if (isAboutVisible) return; 
-    isAboutVisible = true;
+function toggleAbout() {
+  if (isAboutVisible) return;
+  isAboutVisible = true;
 
-    const tl = gsap.timeline();
+  const tl = gsap.timeline();
 
-    tl.to(".about-line", { height: "30px", duration: 0.5, ease: "power2.out" })
-      .to(".about-box", { opacity: 1, y: 0, scale: 1, duration: 0.4, ease: "back.out(1.7)" }, "-=0.1")
-      .to("#about-text", { duration: 2.5, text: aboutContent, ease: "none" });
-  }
+  tl.to(".about-line", {
+    height: "40px",
+    duration: 0.5,
+    ease: "power2.in"
+  });
+
+  tl.to(".about-box", {
+    height: "150px",
+    borderColor: "rgba(0, 209, 255, 0.5)", 
+    duration: 0.4,
+    ease: "power2.out"
+  });
+
+  tl.to(".about-box", {
+    width: "300px",
+    duration: 0.6,
+    ease: "expo.out"
+  });
+
+  tl.to("#about-text", { opacity: 1, duration: 0.3 });
+  tl.to("#about-text", {
+    duration: 2,
+    text: aboutContent,
+    ease: "none"
+  }, "-=0.2");
+}
 
   if (aboutTrigger) {
     aboutTrigger.addEventListener("click", (e) => {
