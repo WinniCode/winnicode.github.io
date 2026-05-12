@@ -76,25 +76,19 @@ function goToSection(index) {
   if (index < 0 || index >= sections.length) return;
 
   isAnimating = true;
-  currentSection = index; 
+  currentSection = index;
   
-  hideNav();
-
-  const isInitialHeroMove = index === 1;
-  const isMobile = window.innerWidth <= 900;
+  // UNLOCK the scroll so GSAP can actually move the window
+  document.body.classList.remove("no-free-scroll"); 
 
   gsap.to(window, {
-    duration: isInitialHeroMove ? 7.5 : (isMobile ? 1.8 : 2.2),
-    scrollTo: {
-      y: sections[index],
-      autoKill: false
-    },
-    overwrite: true, // Forces this animation to kill any other window scrolls
-    ease: isInitialHeroMove ? "power2.inOut" : "power3.inOut",
+    duration: index === 1 ? 7.5 : 2.2,
+    scrollTo: { y: sections[index], autoKill: false },
+    ease: "power2.inOut",
     onComplete: () => {
+      // RE-LOCK after movement
+      document.body.classList.add("no-free-scroll"); 
       revealCurrentSection();
-      ScrollTrigger.refresh();
-      updateNavButtons();
       isAnimating = false;
     }
   });
@@ -105,8 +99,6 @@ function blockManualScroll(event) {
   event.preventDefault();
 }
 
-window.addEventListener("wheel", blockManualScroll, { passive: false });
-window.addEventListener("touchmove", blockManualScroll, { passive: false });
 
 window.addEventListener("keydown", (event) => {
   const blockedKeys = ["ArrowUp", "ArrowDown", "PageUp", "PageDown", "Home", "End", " "];
