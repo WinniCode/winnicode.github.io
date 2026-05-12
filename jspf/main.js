@@ -3,7 +3,7 @@ window.onbeforeunload = function() {
 };
 
 document.addEventListener("DOMContentLoaded", () => {
-  gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
+  gsap.registerPlugin(ScrollTrigger, ScrollToPlugin, TextPlugin);
 
   if (history.scrollRestoration) {
     history.scrollRestoration = "manual";
@@ -13,6 +13,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const sections = ["#home", "#projects", "#project-2", "#project-3", "#contact"];
   let currentSection = 0;
   let isAnimating = false;
+  const aboutTrigger = document.querySelector('#about-trigger');
+  const aboutContent = "Passionate developer crafting immersive digital experiences. Specializing in high-performance GSAP animations and cinematic UI design.";
+  let isAboutVisible = false;
 
   const upBtn = document.querySelector("#nav-up");
   const downBtn = document.querySelector("#nav-down");
@@ -94,6 +97,25 @@ function goToSection(index) {
   }
   });
 }
+
+
+  function toggleAbout() {
+    if (isAboutVisible) return; 
+    isAboutVisible = true;
+
+    const tl = gsap.timeline();
+
+    tl.to(".about-line", { height: "30px", duration: 0.5, ease: "power2.out" })
+      .to(".about-box", { opacity: 1, y: 0, scale: 1, duration: 0.4, ease: "back.out(1.7)" }, "-=0.1")
+      .to("#about-text", { duration: 2.5, text: aboutContent, ease: "none" });
+  }
+
+  if (aboutTrigger) {
+    aboutTrigger.addEventListener("click", (e) => {
+      e.preventDefault();
+      toggleAbout();
+    });
+  }
 
   window.addEventListener("keydown", (e) => {
     const blockedKeys = ["ArrowUp", "ArrowDown", "PageUp", "PageDown", "Home", "End", " "];
