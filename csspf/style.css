@@ -4,20 +4,21 @@
   box-sizing: border-box;
 }
 
-html, body {
-  max-width: 100vw;
+html {
   overflow-x: hidden;
-  position: relative;
+  height: auto;
 }
 
 body {
   background: #050505;
   color: white;
   font-family: Arial, sans-serif;
-  height: 100%;
+  width: 100vw;
+  overflow-x: hidden;
   overflow-y: scroll;
   scrollbar-width: none;
   -ms-overflow-style: none;
+  position: relative;
 }
 
 body::-webkit-scrollbar {
@@ -27,8 +28,14 @@ body::-webkit-scrollbar {
 }
 
 .no-free-scroll {
+  touch-action: none;
+  pointer-events: none;
   overflow: hidden !important;
-  height: 100vh !important;
+}
+
+.hero-menu, 
+.section-nav {
+  pointer-events: auto !important;
 }
 
 .hero {
@@ -55,7 +62,6 @@ body::-webkit-scrollbar {
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25);
-  pointer-events: auto !important;
 }
 
 .menu-link {
@@ -208,7 +214,6 @@ body::-webkit-scrollbar {
   z-index: 9999;
   display: flex;
   opacity: 0;
-  pointer-events: none;
   transition: opacity 0.4s ease;
 }
 
@@ -261,26 +266,23 @@ footer {
     left: 0;           
     right: 0;        
     transform: none;   
-    
     width: 100%;       
     display: flex;
     flex-direction: row;
     justify-content: center; 
     align-items: center;
     gap: 20px;
-    
     padding: 0 20px;
-    pointer-events: none;
   }
 
-.nav-btn {
-    pointer-events: auto; 
+  .nav-btn {
     width: 60px;
     height: 60px;
     flex-shrink: 0;  
   }
 
-  .project, .project.alt {
+  .project, 
+  .project.alt {
     height: 100vh;
     width: 100vw;
     display: flex;
