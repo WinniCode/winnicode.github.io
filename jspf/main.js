@@ -102,6 +102,18 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+window.addEventListener("touchstart", (e) => {
+  if (document.body.classList.contains("no-free-scroll")) {
+    this.touchY = e.touches[0].clientY;
+  }
+}, { passive: false });
+
+window.addEventListener("touchmove", (e) => {
+  if (document.body.classList.contains("no-free-scroll")) {
+    e.preventDefault();
+  }
+}, { passive: false });
+
   const heroTl = gsap.timeline({
     scrollTrigger: {
       trigger: ".hero",
