@@ -1,6 +1,3 @@
-/* =========================================
-   CORE RESET & SCROLL SETUP
-   ========================================= */
 * {
   margin: 0;
   padding: 0;
@@ -8,9 +5,8 @@
 }
 
 html {
-  /* Do NOT use overflow: hidden here; it breaks GSAP scrollTo */
   height: 100%;
-  scroll-behavior: auto; /* GSAP handles the smoothing */
+  scroll-behavior: auto;
 }
 
 body {
@@ -18,34 +14,26 @@ body {
   color: white;
   font-family: Arial, sans-serif;
   height: 100%;
-  /* Allows programmatic scrolling while hiding the scrollbar */
-  overflow-y: scroll; 
-  scrollbar-width: none; 
+  overflow-y: scroll;
+  scrollbar-width: none;
   -ms-overflow-style: none;
 }
 
 body::-webkit-scrollbar {
-  display: none !important; /* Chrome/Safari/Brave */
+  display: none !important;
   width: 0 !important;
   height: 0 !important;
 }
 
-/* 
-   This class is toggled by JS. 
-   It prevents the user from scrolling, but GSAP can still move the window.
-*/
 .no-free-scroll {
   overflow: hidden !important;
   height: 100vh !important;
 }
 
-/* =========================================
-   HERO SECTION
-   ========================================= */
 .hero {
   position: relative;
   height: 100vh;
-  overflow: visible; 
+  overflow: visible;
   z-index: 1;
   background: #050505;
 }
@@ -55,21 +43,18 @@ body::-webkit-scrollbar {
   top: 8vh;
   left: 50%;
   transform: translateX(-50%);
-  z-index: 9999; /* Ensure it stays above parallax layers */
-  
+  z-index: 9999;
   display: flex;
   align-items: center;
   gap: 18px;
   padding: 14px 28px;
-  
   border: 1px solid rgba(255, 255, 255, 0.18);
   border-radius: 999px;
   background: rgba(5, 8, 22, 0.28);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
-  
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25);
-  pointer-events: auto !important; /* Critical for clicks */
+  pointer-events: auto !important;
 }
 
 .menu-link {
@@ -95,9 +80,6 @@ body::-webkit-scrollbar {
   font-size: 0.8rem;
 }
 
-/* =========================================
-   PARALLAX SCENE
-   ========================================= */
 .scene {
   position: absolute;
   left: 50%;
@@ -106,7 +88,7 @@ body::-webkit-scrollbar {
   height: 100vh;
   min-width: 100vw;
   transform: translateX(-50%);
-  pointer-events: none; /* Allows clicks to pass through to the menu */
+  pointer-events: none;
 }
 
 .hero-img {
@@ -121,9 +103,26 @@ body::-webkit-scrollbar {
   z-index: 1;
 }
 
-.hero-far { z-index: 1; width: 100%; height: 100%; object-fit: cover; }
-.hero-middle { z-index: 2; width: 65%; left: 20%; bottom: -10%; }
-.hero-near { z-index: 10; width: 100%; left: 0; bottom: -20vh; }
+.hero-far {
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero-middle {
+  z-index: 2;
+  width: 65%;
+  left: 20%;
+  bottom: -10%;
+}
+
+.hero-near {
+  z-index: 10;
+  width: 100%;
+  left: 0;
+  bottom: -20vh;
+}
 
 .scroll-indicator {
   position: absolute;
@@ -133,12 +132,9 @@ body::-webkit-scrollbar {
   transform: translateX(-50%);
 }
 
-/* =========================================
-   PROJECT SECTIONS
-   ========================================= */
 .project {
   position: relative;
-  z-index: 5; 
+  z-index: 5;
   min-height: 100vh;
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -162,19 +158,24 @@ body::-webkit-scrollbar {
 }
 
 .project.alt {
-  background: radial-gradient(circle at 75% 30%, rgba(255,120,200,0.12), transparent 35%),
+  background: radial-gradient(circle at 75% 30%, rgba(255, 120, 200, 0.12), transparent 35%),
               linear-gradient(to bottom, #080810, #111122);
 }
 
-.project.alt .project-image { order: 2; }
-.project.alt .project-content { order: 1; }
+.project.alt .project-image {
+  order: 2;
+}
+
+.project.alt .project-content {
+  order: 1;
+}
 
 .project-image {
   position: relative;
   aspect-ratio: 4 / 3;
   overflow: hidden;
   border-radius: 28px;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
 }
 
 .project-image video {
@@ -184,41 +185,38 @@ body::-webkit-scrollbar {
   display: block;
 }
 
-.project-content h2 { 
-  font-size: clamp(2.5rem, 5vw, 5rem); 
-  margin: 24px 0; 
-  line-height: 1.1; 
+.project-content h2 {
+  font-size: clamp(2.5rem, 5vw, 5rem);
+  margin: 24px 0;
+  line-height: 1.1;
 }
 
-.project-tag { color: #00d1ff; letter-spacing: 4px; text-transform: uppercase; }
-
-.reveal { 
-  opacity: 0; 
-  transform: translateY(60px); 
+.project-tag {
+  color: #00d1ff;
+  letter-spacing: 4px;
+  text-transform: uppercase;
 }
 
-/* =========================================
-   NAV & FOOTER
-   ========================================= */
+.reveal {
+  opacity: 0;
+  transform: translateY(60px);
+}
+
 .section-nav {
   position: fixed;
-  right: 32px;
-  top: 50%;
-  transform: translateY(-50%);
   z-index: 9999;
   display: flex;
-  flex-direction: column;
-  gap: 14px;
   opacity: 0;
   pointer-events: none;
+  transition: opacity 0.4s ease;
 }
 
 .nav-btn {
   width: 54px;
   height: 54px;
   border-radius: 50%;
-  border: 1px solid rgba(255,255,255,0.22);
-  background: rgba(5,8,22,0.36);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  background: rgba(5, 8, 22, 0.36);
   color: white;
   font-size: 1.6rem;
   cursor: pointer;
@@ -230,7 +228,7 @@ body::-webkit-scrollbar {
 .nav-btn:hover:not(:disabled) {
   transform: scale(1.1);
   color: #8eeeff;
-  background: rgba(0,209,255,0.18);
+  background: rgba(0, 209, 255, 0.18);
 }
 
 .nav-btn:disabled {
@@ -246,19 +244,6 @@ footer {
   background: #050505;
 }
 
-/* =========================================
-   NAVIGATION BUTTONS (Desktop & Mobile)
-   ========================================= */
-.section-nav {
-  position: fixed;
-  z-index: 9999;
-  display: flex;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.4s ease;
-}
-
-/* Desktop: Right Side */
 @media (min-width: 901px) {
   .section-nav {
     right: 32px;
@@ -269,10 +254,9 @@ footer {
   }
 }
 
-/* Mobile: Bottom Center */
 @media (max-width: 900px) {
   .section-nav {
-    bottom: 30px; /* Adjust for notch/safe area */
+    bottom: 30px;
     left: 50%;
     transform: translateX(-50%);
     flex-direction: row;
@@ -282,11 +266,10 @@ footer {
   }
 
   .nav-btn {
-    width: 60px; /* Slightly larger for thumb-tapping */
+    width: 60px;
     height: 60px;
   }
 
-  /* PROJECT SECTIONS ON MOBILE */
   .project, .project.alt {
     height: 100vh;
     width: 100vw;
@@ -294,20 +277,19 @@ footer {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 20px; /* Tight padding to maximize space */
+    padding: 20px;
     gap: 15px;
     overflow: hidden;
   }
 
-  /* Stack image on top of text */
   .project.alt .project-image,
   .project.alt .project-content {
-    order: unset; 
+    order: unset;
   }
 
   .project-image {
     width: 90%;
-    max-height: 40vh; /* Limits video height so text fits below */
+    max-height: 40vh;
     aspect-ratio: 16 / 9;
     flex-shrink: 0;
   }
@@ -319,7 +301,7 @@ footer {
   }
 
   .project-content h2 {
-    font-size: 1.5rem; /* Smaller for mobile headers */
+    font-size: 1.5rem;
     margin: 10px 0;
   }
 
@@ -327,7 +309,7 @@ footer {
     font-size: 0.85rem;
     line-height: 1.4;
   }
-  
+
   .project-tag {
     font-size: 0.7rem;
   }
