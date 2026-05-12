@@ -52,33 +52,49 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  function goToSection(index) {
-    if (isAnimating || index < 0 || index >= sections.length) return;
+function goToSection(index) {
+  if (isAnimating || index < 0 || index >= sections.length) return;
 
-    isAnimating = true;
+  isAnimating = true;
 
-    const isHeroToWork = currentSection === 0 && index === 1;
+  const isHeroToWork = currentSection === 0 && index === 1;
+  const isReturningHome = index === 0;
 
-    gsap.to(window, {
-      duration: isHeroToWork ? 7.5 : 2.2,
-      scrollTo: { y: sections[index], autoKill: false },
-      ease: "power2.inOut",
-      onStart: () => {
-        if (index === 0) {
-          currentSection = index;
-          updateNavButtons();
-        }
-      },
-      onComplete: () => {
+  gsap.to(window, {
+    duration: isHeroToWork ? 7.5 : 2.2,
+    scrollTo: { y: sections[index], autoKill: false },
+    ease: "power2.inOut",
+    onStart: () => {
+      if (isReturningHome) {
         currentSection = index;
         updateNavButtons();
-        document.body.classList.add("no-free-scroll");
-        revealCurrentSection();
-        ScrollTrigger.refresh();
-        isAnimating = false;
       }
-    });
-  }
+    },
+    onComplete: () => {
+      currentSection = index;
+      updateNavButtons();
+
+      if (index >= 1) {
+        gsap.to(".project-bg-fade", {
+          opacity: 1,
+          duration: 1.2,
+          ease: "power2.out"
+        });
+      } else {
+        gsap.to(".project-bg-fade", {
+          opacity: 0,
+          duration: 0.8,
+          ease: "power2.in"
+        });
+      }
+
+      document.body.classList.add("no-free-scroll");
+      revealCurrentSection();
+      ScrollTrigger.refresh();
+      isAnimating = false;
+    }
+  });
+}
 
   window.addEventListener("keydown", (e) => {
     const blockedKeys = ["ArrowUp", "ArrowDown", "PageUp", "PageDown", "Home", "End", " "];
@@ -157,16 +173,6 @@ gsap.to(".hero-sky", {
   }
 });
 
-gsap.to(".project-bg-fade", {
-  opacity: 1,
-  ease: "power2.inOut",
-  scrollTrigger: {
-    trigger: ".first-project",
-    start: "top 10%", 
-    end: "top top",
-    scrub: true
-  }
-});
 
   gsap.utils.toArray(".project-image img, .project-image video").forEach((media) => {
     gsap.fromTo(media,
