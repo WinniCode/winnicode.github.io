@@ -5,14 +5,16 @@
 }
 
 html {
-  overflow: hidden; /* Keep the scrollbar hidden */
+  /* This prevents the "bounce" on mobile but allows programmatic scrolling */
+  overflow: hidden; 
   height: 100%;
 }
 
 body {
   height: 100%;
-  overflow-y: auto; /* Allow internal scrolling, but we control it via JS */
+  overflow-y: auto; /* Required for GSAP to move the scroll position */
   scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
 }
 
 body::-webkit-scrollbar {
