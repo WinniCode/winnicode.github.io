@@ -45,16 +45,17 @@ function goToSection(index){
   currentSection = index;
   updateNavButtons();
 
-  const isMobile = window.innerWidth <= 900;
+  document.body.classList.remove("no-free-scroll");
 
   gsap.to(window, {
-    duration: isMobile ? 1.6 : 2.2,
+    duration: window.innerWidth <= 900 ? 1.8 : 2.2,
     scrollTo: {
       y: sections[currentSection],
       offsetY: 0
     },
     ease: "power3.inOut",
     onComplete: () => {
+      document.body.classList.add("no-free-scroll");
       isAnimating = false;
     }
   });
