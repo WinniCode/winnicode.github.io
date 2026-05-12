@@ -96,11 +96,14 @@ body::-webkit-scrollbar {
   min-width: 100vw;
   transform: translateX(-50%);
   pointer-events: none;
+  will-change: transform;
+  backface-visibility: hidden;
 }
 
 .hero-img {
   position: absolute;
   max-width: none;
+  transform: translateZ(0);
   will-change: transform;
 }
 
