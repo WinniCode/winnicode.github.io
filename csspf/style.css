@@ -132,6 +132,8 @@ body::-webkit-scrollbar {
   width: 100%;
   left: 0;
   bottom: -20vh;
+  opacity: 1;
+  transition: none !important;
 }
 
 .scroll-indicator {
@@ -165,6 +167,7 @@ body::-webkit-scrollbar {
   z-index: -1;
   background: linear-gradient(to bottom, #050505, #0b0b14);
   opacity: 0;
+  will-change: opacity;
 }
 
 .project.alt {
