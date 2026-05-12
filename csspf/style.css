@@ -414,13 +414,14 @@ footer a:hover{
   }
 
   .section-nav{
-    right:auto;
+    position:fixed;
     left:50%;
+    right:auto;
     top:auto;
-    bottom:24px;
+    bottom:calc(22px + env(safe-area-inset-bottom));
     transform:translateX(-50%);
     flex-direction:row;
-    gap:16px;
+    z-index:9999;
   }
 
   .nav-btn{
