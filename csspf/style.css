@@ -370,7 +370,7 @@ footer a:hover{
   }
 
   .about-box {
-    max-width: calc(100% - 40px); 
+    max-width: 150px; 
   }
 
   #about-text {
