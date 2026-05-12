@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let currentSection = 0;
   let isAnimating = false;
   const aboutTrigger = document.querySelector('#about-trigger');
-  const aboutContent = "Passionate developer crafting immersive digital experiences. Specializing in high-performance GSAP animations and cinematic UI design.";
+  const aboutContent = "Hi, I'm Chris, a computaional biologist - passionate about bioinformatics, software engineering and UI design.";
   let isAboutVisible = false;
 
   const upBtn = document.querySelector("#nav-up");
