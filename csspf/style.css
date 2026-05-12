@@ -4,21 +4,16 @@
   box-sizing: border-box;
 }
 
-html {
-  overflow-x: hidden;
-  height: auto;
-}
 
-body {
-  background: #050505;
-  color: white;
-  font-family: Arial, sans-serif;
+html, body {
   width: 100%;
   overflow-x: hidden;
   scrollbar-width: none;
   -ms-overflow-style: none;
 }
 
+
+html::-webkit-scrollbar,
 body::-webkit-scrollbar {
   display: none !important;
   width: 0 !important;
@@ -26,14 +21,16 @@ body::-webkit-scrollbar {
 }
 
 body {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-  width: 100%;
-  overflow-x: hidden;
+  background: #050505;
+  color: white;
+  font-family: Arial, sans-serif;
+  position: relative;
+  overflow-y: auto; 
 }
 
 .no-free-scroll {
   touch-action: none;
+
 }
 
 .hero-menu, 
