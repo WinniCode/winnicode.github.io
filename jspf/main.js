@@ -1,6 +1,5 @@
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
-// Reset scroll to top on refresh
 if (history.scrollRestoration) {
   history.scrollRestoration = "manual";
 }
@@ -25,24 +24,7 @@ let isAnimating = false;
 const upBtn = document.querySelector("#nav-up");
 const downBtn = document.querySelector("#nav-down");
 const sectionNav = document.querySelector(".section-nav");
-
-/* block manual user scrolling, but allow GSAP scrolling */
-function blockManualScroll(event) {
-  if (!isAnimating) {
-    event.preventDefault();
-  }
-}
-
-window.addEventListener("wheel", blockManualScroll, { passive: false });
-window.addEventListener("touchmove", blockManualScroll, { passive: false });
-
-window.addEventListener("keydown", (event) => {
-  const blockedKeys = ["ArrowUp", "ArrowDown", "PageUp", "PageDown", "Home", "End", " "];
-
-  if (!isAnimating && blockedKeys.includes(event.key)) {
-    event.preventDefault();
-  }
-});
+const projectsLink = document.querySelector('.hero-menu a[href="#projects"]');
 
 function hideNav() {
   gsap.to(sectionNav, {
@@ -72,10 +54,10 @@ function updateNavButtons() {
 }
 
 function revealCurrentSection() {
-  const current = document.querySelector(sections[currentSection]);
-  if (!current) return;
+  const section = document.querySelector(sections[currentSection]);
+  if (!section) return;
 
-  const reveal = current.querySelector(".reveal");
+  const reveal = section.querySelector(".reveal");
 
   if (reveal) {
     gsap.to(reveal, {
@@ -92,33 +74,45 @@ function goToSection(index) {
   if (index < 0 || index >= sections.length) return;
 
   isAnimating = true;
-
-  // Keep nav hidden during movement.
   hideNav();
 
-  const isMobile = window.innerWidth <= 900;
   const isInitialHeroMove = currentSection === 0 && index === 1;
+  const isMobile = window.innerWidth <= 900;
 
   gsap.to(window, {
-    duration: isInitialHeroMove ? 3.4 : isMobile ? 1.8 : 2.2,
+    duration: isInitialHeroMove ? 7.5 : isMobile ? 1.8 : 2.2,
     scrollTo: {
       y: sections[index],
       offsetY: 0
     },
-    ease: "power3.inOut",
+    ease: isInitialHeroMove ? "power2.inOut" : "power3.inOut",
     onComplete: () => {
       currentSection = index;
-
       revealCurrentSection();
-      updateNavButtons();
-
       ScrollTrigger.refresh();
-
+      updateNavButtons();
       isAnimating = false;
     }
   });
 }
 
+/* block manual scrolling */
+function blockManualScroll(event) {
+  event.preventDefault();
+}
+
+window.addEventListener("wheel", blockManualScroll, { passive: false });
+window.addEventListener("touchmove", blockManualScroll, { passive: false });
+
+window.addEventListener("keydown", (event) => {
+  const blockedKeys = ["ArrowUp", "ArrowDown", "PageUp", "PageDown", "Home", "End", " "];
+
+  if (blockedKeys.includes(event.key)) {
+    event.preventDefault();
+  }
+});
+
+/* nav buttons */
 upBtn.addEventListener("click", () => {
   goToSection(currentSection - 1);
 });
@@ -127,12 +121,13 @@ downBtn.addEventListener("click", () => {
   goToSection(currentSection + 1);
 });
 
-document.querySelector('a[href="#projects"]')?.addEventListener("click", (event) => {
+/* hero menu */
+projectsLink?.addEventListener("click", (event) => {
   event.preventDefault();
   goToSection(1);
 });
 
-document.querySelector('a[href="#"]')?.addEventListener("click", (event) => {
+document.querySelector('.hero-menu a[href="#"]')?.addEventListener("click", (event) => {
   event.preventDefault();
 });
 
