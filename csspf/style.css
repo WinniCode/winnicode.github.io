@@ -4,16 +4,19 @@
   box-sizing: border-box;
 }
 
-html,
-body{
-  height:100%;
-  overflow:hidden;
+html {
+  overflow: hidden; /* Keep the scrollbar hidden */
+  height: 100%;
 }
 
-body{
-  background:#050505;
-  color:white;
-  font-family:Arial, sans-serif;
+body {
+  height: 100%;
+  overflow-y: auto; /* Allow internal scrolling, but we control it via JS */
+  scrollbar-width: none; /* Firefox */
+}
+
+body::-webkit-scrollbar {
+  display: none; /* Chrome/Safari */
 }
 
 .hero {
