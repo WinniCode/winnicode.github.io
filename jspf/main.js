@@ -13,7 +13,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const sections = ["#home", "#projects", "#project-2", "#project-3", "#contact"];
   let currentSection = 0;
   let isAnimating = false;
+  let aboutTl = gsap.timeline({ paused: true });
   const aboutTrigger = document.querySelector('#about-trigger');
+  const aboutWrapper = document.querySelector('.about-wrapper');
   const aboutContent = "Hi, I'm Chris, a computaional biologist - passionate about bioinformatics, software engineering and UI design.";
   let isAboutVisible = false;
 
@@ -21,6 +23,25 @@ document.addEventListener("DOMContentLoaded", () => {
   const downBtn = document.querySelector("#nav-down");
   const sectionNav = document.querySelector(".section-nav");
   const projectsLink = document.querySelector('.hero-menu a[href="#projects"]');
+
+  aboutTl.to(".about-line", { height: "40px", duration: 0.4, ease: "power2.in" })
+       .to(".about-box", { height: "160px", borderColor: "rgba(0, 209, 255, 0.5)", duration: 0.3, ease: "power2.out" })
+       .to(".about-box", { width: "100%", duration: 0.5, ease: "expo.out" })
+       .to("#about-text", { opacity: 1, duration: 0.2 })
+       .to("#about-text", { duration: 1.5, text: aboutContent, ease: "none" }, "-=0.1");
+
+  if (aboutTrigger) {
+  aboutTrigger.addEventListener("click", (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    
+    if (aboutTl.reversed() || aboutTl.paused()) {
+      aboutTl.play();
+    } else {
+      aboutTl.reverse();
+    }
+  });
+}
 
   const resizeListener = () => {
     let vh = window.innerHeight * 0.01;
@@ -42,6 +63,16 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+["click", "touchstart"].forEach(evt => {
+  window.addEventListener(evt, (e) => {
+    if (!aboutTl.paused() && !aboutTl.reversed()) {
+      if (aboutWrapper && !aboutWrapper.contains(e.target)) {
+        aboutTl.reverse();
+      }
+    }
+  }, { passive: true });
+});
+
   function revealCurrentSection() {
     const section = document.querySelector(sections[currentSection]);
     const reveal = section?.querySelector(".reveal");
@@ -57,6 +88,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function goToSection(index) {
   if (isAnimating || index < 0 || index >= sections.length) return;
+  if (!aboutTl.paused() && !aboutTl.reversed()) {
+    aboutTl.reverse();
+  }
 
   isAnimating = true;
 
