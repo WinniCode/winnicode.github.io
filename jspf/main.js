@@ -56,7 +56,6 @@ document.addEventListener("DOMContentLoaded", () => {
     if (isAnimating || index < 0 || index >= sections.length) return;
 
     isAnimating = true;
-    document.body.classList.remove("no-free-scroll");
 
     const isHeroToWork = currentSection === 0 && index === 1;
 
@@ -109,14 +108,14 @@ window.addEventListener("touchstart", (e) => {
 }, { passive: false });
 
 window.addEventListener("touchmove", (e) => {
-  if (document.body.classList.contains("no-free-scroll")) {
+  if (isAnimating || document.body.classList.contains("no-free-scroll")) {
     e.preventDefault();
   }
 }, { passive: false });
 
 
 window.addEventListener("wheel", (e) => {
-  if (document.body.classList.contains("no-free-scroll")) {
+  if (isAnimating || document.body.classList.contains("no-free-scroll")) {
     e.preventDefault();
   }
 }, { passive: false });
