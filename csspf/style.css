@@ -13,12 +13,10 @@ body {
   background: #050505;
   color: white;
   font-family: Arial, sans-serif;
-  width: 100vw;
+  width: 100%;
   overflow-x: hidden;
-  overflow-y: scroll;
   scrollbar-width: none;
   -ms-overflow-style: none;
-  position: relative;
 }
 
 body::-webkit-scrollbar {
@@ -36,9 +34,6 @@ body {
 
 .no-free-scroll {
   touch-action: none;
-  pointer-events: none;
-  overflow: hidden !important;
-  overflow-y: hidden !important;
 }
 
 .hero-menu, 
