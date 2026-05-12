@@ -46,37 +46,47 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  function goToSection(index) {
-    if (isAnimating) return;
-    if (index < 0 || index >= sections.length) return;
+function goToSection(index) {
+  if (isAnimating) return;
+  if (index < 0 || index >= sections.length) return;
 
-    isAnimating = true;
+  isAnimating = true;
 
-    // 1. Temporarily UNLOCK the body so the window can move
-    document.body.classList.remove("no-free-scroll");
+  // 1. Prepare the body: Remove the lock so window can move, 
+  // but ensure scrollbar remains hidden via CSS class
+  document.body.classList.remove("no-free-scroll");
+  document.body.style.overflow = "hidden"; // Force hidden during transition
 
-    const targetSection = sections[index];
-    const isHeroToWork = currentSection === 0 && index === 1;
+  const isHeroToWork = currentSection === 0 && index === 1;
 
-    gsap.to(window, {
-      duration: isHeroToWork ? 7.5 : 2.2, // Cinematic scroll for first jump
-      scrollTo: { y: targetSection, autoKill: false },
-      ease: "power2.inOut",
-      onStart: () => {
+  gsap.to(window, {
+    duration: isHeroToWork ? 7.5 : 2.2,
+    scrollTo: { y: sections[index], autoKill: false },
+    ease: "power2.inOut",
+    onStart: () => {
+      // If we are heading back to Home (index 0), hide the nav immediately
+      if (index === 0) {
         currentSection = index;
         updateNavButtons();
-      },
-      onComplete: () => {
-        // 2. RE-LOCK the body once animation is done
-        document.body.classList.add("no-free-scroll");
-        revealCurrentSection();
-        
-        // Refresh ScrollTrigger to ensure parallax layers align perfectly
-        ScrollTrigger.refresh();
-        isAnimating = false;
       }
-    });
-  }
+    },
+    onComplete: () => {
+      // 2. The animation is finished: Update indices and show buttons
+      currentSection = index;
+      
+      // Only show the side nav buttons NOW if we aren't on the hero
+      updateNavButtons(); 
+
+      // 3. Re-apply the lock and cleanup styles
+      document.body.classList.add("no-free-scroll");
+      document.body.style.overflow = ""; // Clear the forced hidden style
+      
+      revealCurrentSection();
+      ScrollTrigger.refresh();
+      isAnimating = false;
+    }
+  });
+}
 
   /* =========================================
      INPUT HANDLERS
