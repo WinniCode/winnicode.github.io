@@ -10,9 +10,9 @@
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollToPlugin.min.js"></script>
 </head>
-<body>
+<body class="lock-scroll">
 
-<section class="hero">
+<section class="hero page-section" id="home">
   <div class="scene">
 
 <div class="hero-sky">
@@ -34,7 +34,7 @@
   <div class="scroll-indicator"><a href="#projects" class="menu-link">↓</a></div>
 </section>
 
-<section class="project first-project" id="projects">
+<section class="project first-project page-section" id="projects">
   <div class="project-bg-fade"></div>
 <div class="project-image">
 
@@ -64,7 +64,7 @@
   </div>
 </section>
 
-<section class="project alt">
+<section class="project alt page-section" id="project-2">
 <div class="project-image">
 
   <video
@@ -94,7 +94,7 @@
   </div>
 </section>
 
-<section class="project">
+<section class="project page-section" id="project-3">
 <div class="project-image">
 
   <video
@@ -123,10 +123,16 @@
   </div>
 </section>
 
-<footer>
+<footer class="page-section" id="contact">
   <h3></h3>
   <p><a href="https://github.com/WinniCode" target="_blank">WinniCode</a></p>
 </footer>
+
+<div class="section-nav">
+  <button class="nav-btn" id="nav-up" aria-label="Previous section">↑</button>
+  <button class="nav-btn" id="nav-down" aria-label="Next section">↓</button>
+</div>
+
 
 <script src="jspf/main.js"></script>
 </body>
