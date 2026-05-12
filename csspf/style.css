@@ -4,18 +4,16 @@
   box-sizing: border-box;
 }
 
-body {
-  background: #050505;
-  color: white;
-  font-family: Arial, sans-serif;
+html,
+body{
   height:100%;
+  overflow:hidden;
 }
 
-body.no-free-scroll{
-  position:fixed;
-  inset:0;
-  width:100%;
-  overflow:hidden;
+body{
+  background:#050505;
+  color:white;
+  font-family:Arial, sans-serif;
 }
 
 .hero {
@@ -365,12 +363,13 @@ footer a:hover{
 
   .project,
   .project.alt{
+    height:100vh;
     min-height:100vh;
     display:flex;
     flex-direction:column;
     justify-content:center;
-    gap:22px;
-    padding:70px 7vw;
+    gap:18px;
+    padding:64px 7vw 90px;
   }
 
   .project.alt .project-image,
@@ -378,10 +377,15 @@ footer a:hover{
     order:unset;
   }
 
+  .first-project{
+    padding-top:64px;
+  }
+
   .project-image{
     width:100%;
     aspect-ratio:4 / 3;
     border-radius:20px;
+    flex-shrink:0;
   }
 
   .project-content{
@@ -390,58 +394,22 @@ footer a:hover{
   }
 
   .project-content h2{
-    font-size:clamp(2rem, 10vw, 3.2rem);
-    margin:14px 0;
+    font-size:clamp(1.8rem, 9vw, 3rem);
+    margin:12px 0;
   }
 
   .project-content p{
-    font-size:0.95rem;
-    line-height:1.55;
-  }
-
-  .project-tag{
-    font-size:0.7rem;
-    letter-spacing:3px;
-  }
-
-  .first-project{
-    padding-top:90px;
-  }
-
-  footer{
-    min-height:100vh;
-    padding:70px 7vw;
+    font-size:0.9rem;
+    line-height:1.45;
   }
 
   .section-nav{
-    position:fixed;
     left:50%;
     right:auto;
     top:auto;
-    bottom:calc(22px + env(safe-area-inset-bottom));
+    bottom:calc(18px + env(safe-area-inset-bottom));
     transform:translateX(-50%);
     flex-direction:row;
     z-index:9999;
-  }
-
-  .nav-btn{
-    width:52px;
-    height:52px;
-    font-size:1.4rem;
-  }
-
-  .hero-menu{
-    top:5vh;
-    gap:10px;
-    padding:12px 16px;
-  }
-
-  .menu-link{
-    font-size:0.65rem;
-    letter-spacing:2px;
-  }
-
-  .menu-separator{
-    font-size:0.7rem;
   }
 }
