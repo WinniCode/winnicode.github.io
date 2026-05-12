@@ -118,7 +118,7 @@ body {
   height: 0;
   overflow: hidden;
   border: 1px solid rgba(0, 209, 255, 0.3);
-  background: rgba(5, 8, 22, 0.85); 
+  background: rgba(5, 8, 22, 0.50); 
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-radius: 12px;
