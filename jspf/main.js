@@ -1,4 +1,78 @@
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
+
+const sections = [
+  "#home",
+  "#projects",
+  "#project-2",
+  "#project-3",
+  "#contact"
+];
+
+let currentSection = 0;
+let isAnimating = false;
+
+const upBtn = document.querySelector("#nav-up");
+const downBtn = document.querySelector("#nav-down");
+
+function updateNavButtons(){
+
+  /* Hide nav entirely on hero */
+  if(currentSection === 0){
+    gsap.to(".section-nav", {
+      opacity:0,
+      pointerEvents:"none",
+      duration:0.4
+    });
+  }
+
+  else{
+    gsap.to(".section-nav", {
+      opacity:1,
+      pointerEvents:"auto",
+      duration:0.4
+    });
+  }
+
+  upBtn.disabled = currentSection === 0;
+  downBtn.disabled = currentSection === sections.length - 1;
+}
+
+function goToSection(index){
+  if (isAnimating) return;
+  if (index < 0 || index >= sections.length) return;
+
+  isAnimating = true;
+  currentSection = index;
+  updateNavButtons();
+
+  gsap.to(window, {
+    duration: 2.2,
+    scrollTo: {
+      y: sections[currentSection],
+      offsetY: 0
+    },
+    ease: "power3.inOut",
+    onComplete: () => {
+      isAnimating = false;
+    }
+  });
+}
+
+upBtn.addEventListener("click", () => {
+  goToSection(currentSection - 1);
+});
+
+downBtn.addEventListener("click", () => {
+  goToSection(currentSection + 1);
+});
+
+document.querySelector('a[href="#projects"]')?.addEventListener("click", (event) => {
+  event.preventDefault();
+  goToSection(1);
+});
+
+updateNavButtons();
+
 
 // Reset scroll to top on refresh
 if (history.scrollRestoration) {
