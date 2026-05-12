@@ -247,20 +247,88 @@ footer {
 }
 
 /* =========================================
-   MOBILE
+   NAVIGATION BUTTONS (Desktop & Mobile)
    ========================================= */
-@media(max-width: 900px) {
-  .project, .project.alt {
-    grid-template-columns: 1fr;
-    padding: 80px 7vw;
-    height: auto;
-  }
+.section-nav {
+  position: fixed;
+  z-index: 9999;
+  display: flex;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+/* Desktop: Right Side */
+@media (min-width: 901px) {
   .section-nav {
-    right: auto;
+    right: 32px;
+    top: 50%;
+    transform: translateY(-50%);
+    flex-direction: column;
+    gap: 14px;
+  }
+}
+
+/* Mobile: Bottom Center */
+@media (max-width: 900px) {
+  .section-nav {
+    bottom: 30px; /* Adjust for notch/safe area */
     left: 50%;
-    top: auto;
-    bottom: 20px;
     transform: translateX(-50%);
     flex-direction: row;
+    gap: 20px;
+    width: auto;
+    justify-content: center;
+  }
+
+  .nav-btn {
+    width: 60px; /* Slightly larger for thumb-tapping */
+    height: 60px;
+  }
+
+  /* PROJECT SECTIONS ON MOBILE */
+  .project, .project.alt {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px; /* Tight padding to maximize space */
+    gap: 15px;
+    overflow: hidden;
+  }
+
+  /* Stack image on top of text */
+  .project.alt .project-image,
+  .project.alt .project-content {
+    order: unset; 
+  }
+
+  .project-image {
+    width: 90%;
+    max-height: 40vh; /* Limits video height so text fits below */
+    aspect-ratio: 16 / 9;
+    flex-shrink: 0;
+  }
+
+  .project-content {
+    width: 100%;
+    text-align: center;
+    padding: 0 10px;
+  }
+
+  .project-content h2 {
+    font-size: 1.5rem; /* Smaller for mobile headers */
+    margin: 10px 0;
+  }
+
+  .project-content p {
+    font-size: 0.85rem;
+    line-height: 1.4;
+  }
+  
+  .project-tag {
+    font-size: 0.7rem;
   }
 }
