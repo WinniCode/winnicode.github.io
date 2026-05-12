@@ -2,93 +2,132 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Game Club - Retro Vibes</title>
-  <link href='https://fonts.googleapis.com/css?family=Emilys Candy' rel='stylesheet'>
-  <link rel="stylesheet" href="assets/style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>C.W</title>
+  <link rel="stylesheet" href="css/style.css">
+  <!-- GSAP -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollToPlugin.min.js"></script>
 </head>
 <body>
-  <div class="outer-wrapper">
-    <div class="content-wrapper">
 
+<section class="hero">
+  <div class="scene">
 
-
-      <!-- Text Panel -->
-      <div class="text-panel">
-        <h3></h3>
-        <h1>Game Club</h1>
-        <p>
-          The first rule of Game Club is... you do not talk about Game Club <br /> <br />
-          The second rule of Game Club is... Up, Up, Down, Down, Left, Right, Left, Right, B, A, Start <br /><br />
-          Join us fortnightly-ish to play, talk, and geek out over classic and modern games!
-        </p> <br />
-           
-          <h3>The next Game Club is on: <br />TBA <br /></h3>
-          <p>
-            <h3><a href = "https://engage.cloud.microsoft/main/groups/eyJfdHlwZSI6Ikdyb3VwIiwiaWQiOiIyMzMxNzEyODgwNjQifQ/all" target="_blank">Subscribe to the Engage hub for info & updates!</a></h3>
-          <!-- Sneaking a peek at the code eh? ;)  </a>  -->
-          <br />
-          </p>
-          <p>NPC's welcome <br /> Dialogue trees not required <br />
-        &#9829;
-        </p>
-      </div>
-
-      <!-- TV Wrapper first on mobile -->
-      <div class="tv-wrapper">
-        <img src="images/tv6.png" class="tv-base" alt="Retro TV" />
-        <div class="tv-screen">
-          <div class="crt">
-            <video id="crt-video" autoplay muted playsinline></video>
-            <div class="scanlines"></div>
-          </div>
-        </div>
-      </div>
-      
-    </div>
+<div class="hero-sky">
+    <img src="assets/hero/far.png" class="hero-img hero-far">
+    <img src="assets/hero/middle.png" class="hero-img hero-middle">
   </div>
-<script src="scripts/crt.js"></script>
+    <!-- Near image is the primary foreground -->
+    <img src="assets/hero/near.png" class="hero-img hero-near">
+  </div>
+
+<nav class="hero-menu">
+  <a href="#projects" class="menu-link">Work</a>
+  <span class="menu-separator">|</span>
+  <a href="https://github.com/WinniCode" target="_blank" class="menu-link">Github</a>
+  <span class="menu-separator">|</span>
+  <a href="#" class="menu-link">About</a>
+</nav>
+
+  <div class="scroll-indicator"><a href="#projects" class="menu-link">↓</a></div>
+</section>
+
+<section class="project first-project" id="projects">
+  <div class="project-bg-fade"></div>
+<div class="project-image">
+
+  <video
+    autoplay
+    muted
+    loop
+    playsinline
+    preload="auto"
+  >
+    <source
+      src="assets/01.mp4"
+      type="video/mp4"
+    >
+  </video>
+
+</div>
+  <div class="project-content reveal">
+    <span class="project-tag">001</span>
+    <h2>Interactive Nextflow Results Dashboard</h2>
+    <p>Interactive reporting system integrating sequencing metrics, dynamically created from any Nextflow / nf-core pipeline output</p><br>
+    <p> • Gain Insights</p>
+    <p> • Explore Trends</p>
+    <p> • LLM-Driven QC Analysis</p>
+    <p> • Secure Data Transfer</p>
+        
+  </div>
+</section>
+
+<section class="project alt">
+<div class="project-image">
+
+  <video
+    autoplay
+    muted
+    loop
+    playsinline
+    preload="auto"
+  >
+    <source
+      src="assets/2.mp4"
+      type="video/mp4"
+    >
+  </video>
+
+</div>
+  <div class="project-content reveal">
+    <span class="project-tag">002</span>
+    <h2>GUI-Driven Nextflow Pipelines</h2>
+    <p>• Automated FASTQ Integrity & Contamination Screening</p>
+	<p>• No Command Line Required</p>
+	<p>• Intuitive Drag & Drop streamilined interface</p>
+	<p>• Interactive Visual Feedback</p>
+	<p>• Instant Identification of Host & Environmental Contaminants</p>
+	<p>• Automated Multi-Sample Reporting</p>
+	<p>• Secure Data Handling</p>
+  </div>
+</section>
+
+<section class="project">
+<div class="project-image">
+
+  <video
+    autoplay
+    muted
+    loop
+    playsinline
+    preload="auto"
+  >
+    <source
+      src="assets/4.mp4"
+      type="video/mp4"
+    >
+  </video>
+
+</div>
+  <div class="project-content reveal">
+    <span class="project-tag">003</span>
+    <h2>Easy QC</h2>
+    <p>• Automated MultiQC Generation</p>
+	<p>• No Command Line Required</p>
+	<p>• Intuitive Drag & Drop streamilined interface</p>
+	<p>• Interactive Visual Feedback</p>
+	<p>• Dynamic LLM Insights</p>
+	<p>• Secure Data Handling</p>
+  </div>
+</section>
+
+<footer>
+  <h3></h3>
+  <p><a href="https://github.com/WinniCode" target="_blank">WinniCode</a></p>
+</footer>
+
+<script src="js/main.js"></script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
