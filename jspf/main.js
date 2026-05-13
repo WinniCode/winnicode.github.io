@@ -25,10 +25,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   let aboutTl = gsap.timeline({ paused: true });
+
+  function closeAboutFast() {
+  if (!aboutTl.paused()) {
+    gsap.set("#about-text", { opacity: 0 }); 
+    aboutTl.reverse("boxFull"); 
+        }
+      }
   
   aboutTl.to(".about-line", { height: "40px", duration: 0.4, ease: "power2.in" })
          .to(".about-box", { height: "160px", borderColor: "rgba(0, 209, 255, 0.5)", duration: 0.3, ease: "power2.out" })
          .to(".about-box", { width: "100%", duration: 0.5, ease: "expo.out" })
+         .add("boxFull")
          .to("#about-text", { opacity: 1, duration: 0.2 })
          .to("#about-text", { duration: 3.0, text: aboutContent, ease: "none" }, "-=0.1");
 
@@ -41,7 +49,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (aboutTl.reversed() || aboutTl.paused()) {
         aboutTl.play();
       } else {
-        aboutTl.reverse();
+        closeAboutFast();
       }
     });
   }
@@ -51,7 +59,7 @@ document.addEventListener("DOMContentLoaded", () => {
     window.addEventListener(evt, (e) => {
       if (!aboutTl.paused() && !aboutTl.reversed()) {
         if (aboutWrapper && !aboutWrapper.contains(e.target)) {
-          aboutTl.reverse();
+          closeAboutFast();
         }
       }
     }, { passive: true });
@@ -86,7 +94,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
  
     if (!aboutTl.paused() && !aboutTl.reversed()) {
-      aboutTl.reverse();
+      closeAboutFast();
     }
 
     isAnimating = true;
