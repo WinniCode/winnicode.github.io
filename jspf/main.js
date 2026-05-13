@@ -188,8 +188,8 @@ document.addEventListener("DOMContentLoaded", () => {
     opacity: 0,
     scrollTrigger: {
       trigger: ".hero",
-      start: "60% top",
-      end: "95% top",
+      start: "30% top",
+      end: "55% top",
       scrub: true
     }
   });
