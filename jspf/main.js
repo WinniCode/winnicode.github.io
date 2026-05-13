@@ -117,9 +117,9 @@ document.addEventListener("DOMContentLoaded", () => {
         updateNavButtons();
         
         if (index >= 1) {
-          gsap.to(".project-bg-fade", { opacity: 1, duration: 2.2 });
+          gsap.to(".project-bg-fade", { opacity: 1, duration: 4.0, ease: "power1.inOut" });
         } else {
-          gsap.to(".project-bg-fade", { opacity: 0, duration: 3.2 });
+          gsap.to(".project-bg-fade", { opacity: 0, duration: 5.0, ease: "power1.inOut" });
         }
         
         revealCurrentSection();
@@ -188,8 +188,8 @@ document.addEventListener("DOMContentLoaded", () => {
     opacity: 0,
     scrollTrigger: {
       trigger: ".hero",
-      start: "30% top",
-      end: "80% top",
+      start: "60% top",
+      end: "95% top",
       scrub: true
     }
   });
