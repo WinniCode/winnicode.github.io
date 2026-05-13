@@ -103,7 +103,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const isReturningHome = index === 0;
 
     gsap.to(window, {
-      duration: isHeroToWork ? 7.5 : 2.2,
+      duration: isHeroToWork ? 8.5 : 2.2,
       scrollTo: { y: sections[index], autoKill: false },
       ease: "power2.inOut",
       onStart: () => {
