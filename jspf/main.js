@@ -180,7 +180,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   heroTl
-    .to(".hero-far", { y: 150, scale: 1.05, ease: "none" }, 0)
+    .to(".hero-far", { y: 150, scale: 1.05, opacity: 0.5, ease: "none" }, 0)
     .to(".hero-middle", { y: 280, ease: "none" }, 0)
     .to(".hero-near", { y: 450, ease: "none" }, 0);
 
