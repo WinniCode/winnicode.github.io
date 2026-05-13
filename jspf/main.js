@@ -188,9 +188,9 @@ document.addEventListener("DOMContentLoaded", () => {
     opacity: 0,
     scrollTrigger: {
       trigger: ".hero",
-      start: "30% top",
-      end: "55% top",
-      scrub: true
+      start: "top top",
+      end: "bottom top",
+      scrub: 2
     }
   });
 
