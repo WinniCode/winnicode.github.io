@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
   
   aboutTl.to(".about-line", { height: "40px", duration: 0.4, ease: "power2.in" })
-         .to(".about-box", { height: "160px", borderColor: "rgba(0, 209, 255, 0.5)", duration: 0.3, ease: "power2.out" })
+         .to(".about-box", { height: "200px", borderColor: "rgba(0, 209, 255, 0.5)", duration: 0.3, ease: "power2.out" })
          .to(".about-box", { width: "100%", duration: 0.5, ease: "expo.out" })
          .add("boxFull")
          .to("#about-text", { opacity: 1, duration: 0.2 })
