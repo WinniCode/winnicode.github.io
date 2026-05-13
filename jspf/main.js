@@ -117,9 +117,9 @@ document.addEventListener("DOMContentLoaded", () => {
         updateNavButtons();
         
         if (index >= 1) {
-          gsap.to(".project-bg-fade", { opacity: 1, duration: 3.2 });
+          gsap.to(".project-bg-fade", { opacity: 1, duration: 2.2 });
         } else {
-          gsap.to(".project-bg-fade", { opacity: 0, duration: 1.8 });
+          gsap.to(".project-bg-fade", { opacity: 0, duration: 3.2 });
         }
         
         revealCurrentSection();
