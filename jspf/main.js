@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
   
   const aboutTrigger = document.querySelector('#about-trigger');
   const aboutWrapper = document.querySelector('.about-wrapper');
-  const aboutContent = "I’m Chris, a Computational Biologist dedicated to bridging the gap between complex biological data and intuitive user experiences. I specialise in building robust bioinformatics pipelines with a focus on creative software engineering and streamlined UI design. Explore my 'Work' to see my latest builds.";
+  const aboutContent = "I’m Chris, a Computational Biologist dedicated to transforming raw genomic data into accessible, high-impact insights through intuitive design and engineering. I specialise in building robust bioinformatics pipelines with a focus on streamlined UI design. Explore my 'Work' to see a selection of my latest builds.";
 
   const upBtn = document.querySelector("#nav-up");
   const downBtn = document.querySelector("#nav-down");
