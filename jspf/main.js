@@ -10,6 +10,46 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   window.scrollTo(0, 0);
 
+window.addEventListener("load", () => {
+
+  gsap.to(".scene", {
+    opacity:1,
+    duration:2.2,
+    ease:"power2.out"
+  });
+
+  gsap.fromTo(
+    ".hero-menu",
+    {
+      opacity:0,
+      y:-20
+    },
+    {
+      opacity:1,
+      y:0,
+      duration:1.4,
+      delay:0.6,
+      ease:"power3.out"
+    }
+  );
+
+  gsap.fromTo(
+    ".scroll-indicator",
+    {
+      opacity:0,
+      y:10
+    },
+    {
+      opacity:0.85,
+      y:0,
+      duration:1.2,
+      delay:1.2,
+      ease:"power2.out"
+    }
+  );
+
+});
+
   const sections = ["#home", "#projects", "#project-2", "#project-3", "#contact"];
   let currentSection = 0;
   let isAnimating = false;
