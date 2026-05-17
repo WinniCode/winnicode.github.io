@@ -156,7 +156,7 @@ window.addEventListener("load", () => {
         updateNavButtons();
         
         if (index >= 1) {
-          gsap.to(".project-bg-fade", { opacity: 1, duration: 60.0, ease: "power1.inOut" });
+          gsap.to(".project-bg-fade", { opacity: 1, duration: 15.0, ease: "power1.inOut" });
         } else {
           gsap.to(".project-bg-fade", { opacity: 0, duration: 2.0, ease: "power1.inOut" });
         }
