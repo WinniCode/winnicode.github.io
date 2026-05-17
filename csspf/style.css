@@ -142,7 +142,6 @@ body {
 }
 
 .scene {
-  opacity:0;
   position: absolute;
   left: 50%;
   top: 0;
@@ -153,6 +152,7 @@ body {
   pointer-events: none;
   will-change: transform;
   backface-visibility: hidden;
+  opacity:0;
 }
 
 .hero-img {
