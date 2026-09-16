@@ -408,7 +408,28 @@ function render(){
   requestAnimationFrame(render);
 }
 
-buildFacePage(container, key){ const page = pages[key]; container.innerHTML = <div class="web-top"> <div class="web-kicker">${page.kicker}</div> <button class="btn-back" type="button">← Return</button> </div> ; requestAnimationFrame(() => { container.classList.add('visible'); }); const backBtn = container.querySelector('.btn-back'); if (backBtn) { backBtn.onclick = (e) => { e.preventDefault(); e.stopPropagation(); closePage(); }; } }
+function buildFacePage(container, key){
+  const page = pages[key];
+  container.innerHTML = `
+    <div class="web-top">
+      <div class="web-kicker">${page.kicker}</div>
+      <button class="btn-back" type="button">← Return</button>
+    </div>
+  `;
+
+  requestAnimationFrame(() => {
+    container.classList.add('visible');
+  });
+
+  const backBtn = container.querySelector('.btn-back');
+  if (backBtn) {
+    backBtn.onclick = (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      closePage();
+    };
+  }
+}
 
 function openCubeFace(face){
   if(pageOpen || pageAnimating) return;
