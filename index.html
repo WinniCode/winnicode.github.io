@@ -369,16 +369,9 @@ let currentSelectedFace = null;
 let activeFaceOriginalTransform = '';
 let autoSpinEnabled = true;
 
-var a = document.createElement('a');
-var linkText = document.createTextNode("my title text");
-a.appendChild(linkText);
-a.title = "Demo Files";
-a.href = "Demo.zip";
-document.body.appendChild(a);
-
 const pages = {
   projects: { kicker: '01 / Selected Work', title: '', lead: '' },
-  about: { kicker: '02 / About', title: 'About', lead: "hello" },
+  about: { kicker: '02 / About', title: 'About', lead: "hello", link: 'Demo.zip', linkText: 'Download Discovered Demos'  },
   work: { kicker: '03 / Work', title: 'Work', lead: "Selected clients and roles." },
   contact: { kicker: '04 / Contact', title: 'Contact', lead: 'Email, socials and booking information.' },
   ideas: { kicker: '05 / Ideas', title: 'Ideas', lead: 'Experiments and future concepts.' },
@@ -417,10 +410,24 @@ function render(){
 
 function buildFacePage(container, key){
   const page = pages[key];
+
   container.innerHTML = `
     <div class="web-top">
       <div class="web-kicker">${page.kicker}</div>
       <button class="btn-back" type="button">← Return</button>
+    </div>
+
+    <div class="web-content">
+      <h1>${page.title}</h1>
+      <p>${page.lead}</p>
+
+      ${page.link ? `
+        <p>
+          <a href="${page.link}" target="_blank" rel="noopener">
+            ${page.linkText}
+          </a>
+        </p>
+      ` : ''}
     </div>
   `;
 
