@@ -323,8 +323,7 @@ body {
         <span class="face-label">Ideas</span>
       </div>
       <div class="face bottom" data-page="other">
-        <span class="face-label">Other</span>
-		  <a href="Demos.zip"> Download Demo Files </a> 
+        <span class="face-label">Other</span> 
       </div>
     </div>
   </div>
@@ -370,9 +369,19 @@ let currentSelectedFace = null;
 let activeFaceOriginalTransform = '';
 let autoSpinEnabled = true;
 
+var a = document.createElement('a');
+var linkText = document.createTextNode("my title text");
+a.appendChild(linkText);
+a.title = "Demo Files";
+a.href = "Demo.zip";
+document.body.appendChild(a);
+
 const pages = {
   projects: { kicker: '01 / Selected Work', title: '', lead: '' },
-  about: { kicker: '02 / About', title: 'About', lead: "Information and overview." },
+  about: { kicker: '02 / About', title: 'About', lead: a.appendChild(linkText);
+a.title = "Demo Files";
+a.href = "Demo.zip";
+document.body.appendChild(a); },
   work: { kicker: '03 / Work', title: 'Work', lead: "Selected clients and roles." },
   contact: { kicker: '04 / Contact', title: 'Contact', lead: 'Email, socials and booking information.' },
   ideas: { kicker: '05 / Ideas', title: 'Ideas', lead: 'Experiments and future concepts.' },
